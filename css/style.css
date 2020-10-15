@@ -31,7 +31,7 @@ menu{
 	position: relative;
 	top: 0px;
 	width: 60%;
-	margin-left: 20%;
+	margin-left: 17.5%;
 }
 
 .menu_button{ /*this is mostly good. TODO: styling, making sure buttons don't squish off*/
@@ -56,6 +56,7 @@ body{
 }
 
 footer {
+	float: left;
 	width: 99.5%; /*this should probably be 100% not gonna lie*/
 	border-top: solid black 2px; /*may want to change how we mark out this border*/
 }
@@ -65,5 +66,7 @@ footer {
 	font-size: 10px;
 	float: left;
 }
+
+
 
 

@@ -1,0 +1,55 @@
+#left{
+	float: left;
+	margin-top: 15px;
+	margin-left: 17.5%;
+}
+
+#middle{
+	float: left;
+	margin-top: 15px;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+#right{
+	margin-top: 15px;
+	float: left;
+}
+
+#avatar{
+	position: static;
+	left:0px;
+	top:0px;
+	min-width: 500px;
+	min-height: 500px;
+	max-width: 500px;
+	max-height: 500px;
+	border: solid black 2px;
+}
+
+.interaction{
+	float: left;
+	width: 250px;
+	height: 75px;
+}
+
+.countdown{
+	margin-top: 10px;
+	margin-bottom: 25px;
+}
+
+.details {
+	float: left;
+	margin-top: 15px;
+	margin-bottom: 30px;
+	width: 150px;
+	margin-right: 25px;
+	font-size: 20px;
+}
+
+.info {
+	margin-top: 10px;
+	float: right;
+	width: 150px;
+	font-size: 20px;
+}
