@@ -11,9 +11,7 @@ Table of contents:
 Main Page Sections
 */
 content{
-	float: left;
 	margin-left :17.5%;
-	width: 100%;
 }
 
 #left{
@@ -73,6 +71,7 @@ Middle (avatar and sell)
 	height: 50px;
 	width: 150px;
 	margin-bottom: 10px;
+	border-radius: 15px;
 }
 
 #cat_price{
