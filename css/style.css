@@ -40,7 +40,7 @@ menu{
 .menu_button{ /*this is mostly good. TODO: styling, making sure buttons don't squish off*/
 	text-align: center;
 	float: left;
-	width: 19%;
+	width: 200px;
 	color: #222222;
 }
 
