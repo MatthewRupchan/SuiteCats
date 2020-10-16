@@ -19,23 +19,25 @@ I threw stupid amounts of comments below to mark out some things that will need 
 
 header{
 	width: 99.5%; /*this should probably be 100% not gonna lie*/
-	height: 200px; /*is this too much?*/
+	height: 200px;
 	border-bottom: solid black 2px; /*needs styling, this is temporary*/
 }
 
-#website_title{
-	margin-left: 25%; /*TODO: position title*/
+#website_header{
+	border-bottom: solid black 2px;
+	height: 152px;
 }
 
 menu{
 	position: relative;
-	top: 0px;
+	top: -25px;
+	float: left;
 	width: 60%;
+	height: 50px;
 	margin-left: 17.5%;
 }
 
 .menu_button{ /*this is mostly good. TODO: styling, making sure buttons don't squish off*/
-	position: relative;
 	text-align: center;
 	float: left;
 	width: 19%;
@@ -47,12 +49,37 @@ menu{
 }
 
 #website_title{ /*TODO: stylize*/
+	margin-left: 25%;
+	float: left;
 	color: #222222;
 	font-size: 50px;
 }
 
-body{
-	width: 99.5%; /*this should probably be 100% not gonna lie*/
+#mascot{
+	float: left;
+	width: 150px;
+	height: 150px;
+	margin-right: 100px;
+	margin-left: 20%;
+}
+
+#user_info_box{
+	float: left;
+	border: solid black 2px;
+	border-left: 0px;
+	height: 150px;
+}
+
+.user_box_element{
+	width: 150px;
+	height: 40px;
+	font-size: 24px;
+	margin: 5px;
+}
+
+content{
+	float: left;
+	width: 100%;
 }
 
 footer {
