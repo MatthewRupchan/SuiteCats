@@ -1,0 +1,107 @@
+/*
+Table of contents:
+1-Main Page Sections
+2-Left Hand Side (information about cat)
+3-Middle (avatar and sell)
+4-Right Hand Side (interactions)
+*/
+
+
+/*
+Main Page Sections
+*/
+content{
+	float: left;
+	margin-left :17.5%;
+	width: 100%;
+}
+
+#left{
+	float: left;
+	margin-top: 15px;
+}
+
+#middle{
+	float: left;
+	margin-top: 15px;
+	margin-left: 5%;
+	margin-right: 5%;
+	font-size: 24px;
+}
+
+#right{
+	margin-top: 15px;
+	float: left;
+}
+
+/*
+Left Hand Side (information about cat)
+*/
+.details { /*The prompt*/
+	float: left;
+	margin-top: 15px;
+	margin-bottom: 30px;
+	width: 150px;
+	margin-right: 25px;
+	font-size: 20px;
+}
+
+.info { /*Real info we take from the database*/
+	margin-top: 15px;
+	margin-bottom: 30px;
+	float: right;
+	width: 150px;
+	font-size: 20px;
+}
+
+/*
+Middle (avatar and sell)
+*/
+#avatar{
+	position: static;
+	left:0px;
+	top:0px;
+	min-width: 500px;
+	min-height: 500px;
+	max-width: 500px;
+	max-height: 500px;
+	border: solid black 2px;
+}
+
+#sell_cat {
+	font-size: 24px;
+	height: 50px;
+	width: 150px;
+	margin-bottom: 10px;
+}
+
+#cat_price{
+	float: right;
+	height: 40px;
+	font-size: 24px;
+}
+
+#price_label {
+	float: right;
+	margin-top: 7px;
+	margin-right: 10px;
+}
+
+/*
+Right Hand Side (interactions)
+*/
+.interaction{
+	float: left;
+	width: 250px;
+	height: 75px;
+	font-size: 200%
+}
+
+.countdown{
+	margin-top: 10px;
+	margin-bottom: 25px;
+	font-size: 16px;
+}
+
+
+
