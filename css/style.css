@@ -26,6 +26,7 @@ header{
 #website_header{
 	border-bottom: solid black 2px;
 	height: 152px;
+	min-width: 1000px;
 }
 
 menu{
@@ -50,7 +51,7 @@ menu{
 }
 
 #website_title{ /*TODO: stylize*/
-	margin-left: 25%;
+	margin-left: calc(35% - 200px);
 	float: left;
 	color: #222222;
 	font-size: 50px;
@@ -58,10 +59,9 @@ menu{
 
 #mascot{
 	float: left;
-	width: 150px;
+	width: 250px;
 	height: 150px;
-	margin-right: 100px;
-	margin-left: 20%;
+	margin-left: calc(35% - 150px);
 }
 
 #user_info_box{
