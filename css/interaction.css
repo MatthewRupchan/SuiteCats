@@ -11,7 +11,8 @@ Table of contents:
 Main Page Sections
 */
 content{
-	margin-left :17.5%;
+	margin-left: calc(20% - 75px);
+	min-width: 1200px;	
 }
 
 #left{
@@ -22,8 +23,8 @@ content{
 #middle{
 	float: left;
 	margin-top: 15px;
-	margin-left: 5%;
-	margin-right: 5%;
+	margin-left: 3%;
+	margin-right: 3%;
 	font-size: 24px;
 }
 
