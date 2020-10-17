@@ -11,6 +11,7 @@ Main Page Sections
 */
 content{
 	min-width: calc(210px + 580px + 210px);
+	margin-top: -25px;
 }
 
 aside{
@@ -24,7 +25,8 @@ aside{
 	float: left;
 	width: 80%;
 	max-width: calc(100% - 420px);
-	min-width: calc(580px); /*470 vs 580*/
+	min-width: calc(580px); 
+	/*470 vs 580. 470 is good enough but 580 doesn't let buy text fall off button*/
 }
 
 /*
@@ -40,10 +42,12 @@ Aside Section Content
 /*
 Marketplace Section Content
 */
-h1{
+.heading{
 	float: left;
 	width: 100%;
 	text-align: center;
+	font-size: 36px;
+	margin-bottom: 15px;
 }
 
 .forward_backward{
@@ -92,7 +96,6 @@ Inner Table Content
 }
 
 .row{
-	
 	width: calc(100% - 156px);
 	float: left;
 	border: solid black 2px;

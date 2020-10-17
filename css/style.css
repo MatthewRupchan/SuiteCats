@@ -18,7 +18,7 @@ I threw stupid amounts of comments below to mark out some things that will need 
 header{
 	width: 100%;
 	height: 200px;
-	border-bottom: solid black 2px; /*needs styling, this is temporary*/
+	border-bottom: solid black 2px;
 }
 
 #website_header{
