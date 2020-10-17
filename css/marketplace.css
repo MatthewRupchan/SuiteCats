@@ -1,18 +1,72 @@
+/*
+Table of contents:
+1-Main Page Sections
+2-Aside Section Content
+3-Marketplace Section Content
+*/
+
+/*
+Main Page Sections
+*/
+content{
+	min-width: calc(220px + 450px + 220px);
+}
+
 aside{
 	width:10%;
 	min-width: 220px;
 	float: left;
 }
 
-.icon{
-	float: left;
-	width: 200px;
-	height: 500px;
-	margin: 5px;
-}
-
 #marketplace{
 	float: left;
 	width: 80%;
 	max-width: calc(100% - 450px);
+	min-width: calc(450px);
+}
+
+/*
+Aside Section Content
+*/
+.icon{
+	float: left;
+	width: 200px;
+	height: 500px;
+	margin-top: 150px;
+	margin: 5px;
+}
+
+/*
+Marketplace Section Content
+*/
+h1{
+	float: left;
+	width: 100%;
+	text-align: center;
+}
+
+.forward_backward{
+	float: left;
+	width: 100%;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.image_button{
+	width: 60px;
+	height: 40px;
+	margin-left: 10px;
+	margin-right: 10px;
+	float: left;
+}
+
+.image_button:hover{
+	cursor: pointer;
+}
+
+.page_label{
+	text-align: center;
+	float: left;
+	min-width: 100px;
+	width: calc(100% - 320px);
 }
