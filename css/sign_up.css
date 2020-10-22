@@ -1,8 +1,26 @@
 /*
 Table of contents:
-1-Main Page Sections
-2-Sign Up Rows
+1-Header Changes
+2-Main Page Sections
+3-Sign Up Rows
 */
+
+/*
+Header Changes
+*/
+#website_header{
+	border-bottom: 0px;
+	min-width: 400px;
+}
+
+header{
+	height: 150px;
+	border-bottom: solid black 2px;
+}
+
+#website_title{
+	margin-left: calc(50% - 125px);
+}
 
 /*
 Main Page Sections
