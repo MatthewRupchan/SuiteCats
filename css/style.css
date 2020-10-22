@@ -1,7 +1,5 @@
 /*NOTES:
-should this file be renamed and only concerned with the base website things like the
-menu, header, and footer? also font things and colours, and put things for other pages
-in their own css file?
+Make a css page for each webpage! This is only for styling that affects many pages.
 
 nothing in here is solid, I only did a few of these things to give a framework to start from
 
@@ -18,14 +16,15 @@ I threw stupid amounts of comments below to mark out some things that will need 
 }
 
 header{
-	width: 99.5%; /*this should probably be 100% not gonna lie*/
+	width: 100%;
 	height: 200px;
-	border-bottom: solid black 2px; /*needs styling, this is temporary*/
+	border-bottom: solid black 2px;
 }
 
 #website_header{
 	border-bottom: solid black 2px;
 	height: 152px;
+	min-width: 1000px;
 }
 
 menu{
@@ -33,14 +32,15 @@ menu{
 	top: -25px;
 	float: left;
 	width: 60%;
+	min-width: 1000px;
 	height: 50px;
-	margin-left: 17.5%;
+	margin-left: calc((90% - 1000px)/2);
 }
 
-.menu_button{ /*this is mostly good. TODO: styling, making sure buttons don't squish off*/
+.menu_button{ /*this is mostly good. TODO: styling*/
 	text-align: center;
 	float: left;
-	width: 19%;
+	width: 200px;
 	color: #222222;
 }
 
@@ -49,7 +49,7 @@ menu{
 }
 
 #website_title{ /*TODO: stylize*/
-	margin-left: 25%;
+	margin-left: calc(35% - 200px);
 	float: left;
 	color: #222222;
 	font-size: 50px;
@@ -57,10 +57,9 @@ menu{
 
 #mascot{
 	float: left;
-	width: 150px;
+	width: 250px;
 	height: 150px;
-	margin-right: 100px;
-	margin-left: 20%;
+	margin-left: calc(35% - 150px);
 }
 
 #user_info_box{
@@ -84,7 +83,7 @@ content{
 
 footer {
 	float: left;
-	width: 99.5%; /*this should probably be 100% not gonna lie*/
+	width: 100%;
 	border-top: solid black 2px; /*may want to change how we mark out this border*/
 }
 
@@ -98,4 +97,6 @@ button{
 	border-radius: 15px;
 }
 
-
+button:hover{
+	cursor: pointer;
+}
