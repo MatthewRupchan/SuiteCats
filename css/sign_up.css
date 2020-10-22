@@ -1,8 +1,12 @@
-/*TODO
-make comments and table of contents
-validation!
+/*
+Table of contents:
+1-Main Page Sections
+2-Sign Up Rows
 */
 
+/*
+Main Page Sections
+*/
 content{
 	float: left;
 	width: 40%;
@@ -18,6 +22,20 @@ content{
 	margin-top: 20px;
 }
 
+#sign_up_submit{
+	font-size: 100%;
+	background: url(../cat_images/placeholder.png);
+	width: 300px;
+	height: 200px;
+	margin-left: calc(50% - 150px);
+	float: left;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+/*
+Sign Up Rows
+*/
 .sign_up_row{
 	width: 100%;
 	float: left;
@@ -47,15 +65,4 @@ content{
 	width: 100%;
 	float: left;
 	color: red;
-}
-
-#sign_up_submit{
-	font-size: 100%;
-	background: url(../cat_images/placeholder.png);
-	width: 300px;
-	height: 200px;
-	margin-left: calc(50% - 150px);
-	float: left;
-	margin-top: 15px;
-	margin-bottom: 15px;
 }
