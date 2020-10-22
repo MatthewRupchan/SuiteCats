@@ -1,8 +1,13 @@
+/*TODO
+make comments and table of contents
+validation!
+*/
 
 content{
 	float: left;
 	width: 40%;
-	margin-left: 30%;
+	min-width: 400px;
+	margin-left: calc(44% - 200px);
 }
 
 #sign_up_title{
@@ -16,23 +21,24 @@ content{
 .sign_up_row{
 	width: 100%;
 	float: left;
-	min-width: 400px; /*TODO MAKE THIS WORK GOOD*/
+	min-width: 400px;
 	margin-top: 15px;
 	margin-bottom: 5px;
 }
 
 .sign_up_text{
 	width: 25%;
+	min-width: 140px;
 	text-align: right;
-	margin-right: 4%;
+	margin-right: 10px;
 	float: left;
 	font-size: 20px;
 }
 
 .sign_up_input{
-	width: 65%;
+	width: calc(85% - 140px);
 	text-align: left;
-	margin-left: 4%;
+	margin-left: 10px;
 	float: left;
 	font-size: 20px;
 }
