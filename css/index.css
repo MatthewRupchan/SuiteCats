@@ -1,11 +1,35 @@
 /*
 Table of contents:
-
+1. Table outline and elements (paddings...)
+2. Div groups (affects the levelling of the icons)
+3. Map Icons and Labels
+4. Road/SignUp Button
+5. Background of the Website and adjustable content sizing
 */
 
 
-/*Map Icons*/
+/*1. Table outline and elements */
+table
+{
+	margin-left: auto;
+	margin-right: auto;
+	width:100%;
+}
 
+th, td {
+	padding:10px;
+}
+
+/*2. Div groups (affects the levelling of the icons)*/
+#raised_div {
+	margin-bottom:25%;
+}
+
+#lowered_div {
+	margin-top:25%;
+}
+
+/*3. Map Icons and Labels*/
 #icon_marketplace {
 	background-image: url("../cat_images/placeholder.png");
 	height:400px; 
@@ -24,30 +48,12 @@ Table of contents:
 	width:350px;
 }
 
-#raised_div {
-	margin-bottom:25%;
-}
-
-#lowered_div {
-	margin-top:25%;
-}
-
 .labels {
 	font-size:200%;
 	float:center;
 	color:#cf8943
 }
 
-table
-{
-	margin-left: auto;
-	margin-right: auto;
-	width:100%;
-}
-
-th, td {
-	padding:10px;
-}
 
 /*Probably going to need CSS for the road
 Implement PHP to disable and hide button for when user is logged in.*/
@@ -56,6 +62,4 @@ Implement PHP to disable and hide button for when user is logged in.*/
 	background-color:#3B2713;
 }
 
-#logged_in {
-	
-}
+/*5. Background of the Website and adjustable content sizing*/
