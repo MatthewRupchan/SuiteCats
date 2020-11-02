@@ -100,3 +100,18 @@ button{
 button:hover{
 	cursor: pointer;
 }
+
+.heading{
+	float: left;
+	width: 100%;
+	text-align: center;
+	font-size: 36px;
+	margin-bottom: 15px;
+}
+
+.icon{
+	float: left;
+	width: 200px;
+	height: 500px;
+	margin: 5px;
+}
