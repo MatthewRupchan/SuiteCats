@@ -27,6 +27,10 @@ header{
 	min-width: 1000px;
 }
 
+a {
+	text-decoration: none;
+}
+
 menu{
 	position: relative;
 	top: -25px;

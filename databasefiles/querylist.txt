@@ -36,6 +36,17 @@ create TABLE cat_table(
 Insert example:
 INSERT INTO user_table(user_id, user_name, user_password, email, money) VALUES ('123456', 'Tom B. Erichsen', 'Skagen21', 'Stavanger@qq.com', '4006');
 
+Nov 5th, 2020 updates:
+
+ALTER TABLE marketplace ADD market_id INT NOT NULL;
+
+ALTER TABLE marketplace ADD PRIMARY KEY(market_id);
+
+ALTER TABLE marketplace ADD FOREIGN KEY(cat_id) REFERENCES cat_table(cat_id);
+
+ALTER TABLE cat_table ADD cat_name varchar(255);
+
+ALTER TABLE user_table ADD user_repassword varchar(255); 
 
 
 
