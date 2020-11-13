@@ -30,25 +30,8 @@ aside{
 }
 
 /*
-Aside Section Content
-*/
-.icon{
-	float: left;
-	width: 200px;
-	height: 500px;
-	margin: 5px;
-}
-
-/*
 Marketplace Section Content
 */
-.heading{
-	float: left;
-	width: 100%;
-	text-align: center;
-	font-size: 36px;
-	margin-bottom: 15px;
-}
 
 .forward_backward{
 	float: left;
