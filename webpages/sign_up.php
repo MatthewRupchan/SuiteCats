@@ -66,7 +66,7 @@
 			
 			<form action="sign_up.php" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="submitted" value="1"></input>
-				<label id="sign_up_error_message" class="error_message"><!--PHP error messages--></label>
+				<label id="sign_up_error_message" class="error_message"><?=$error?></label>
 				
 				<div class="sign_up_row">
 					<div class="sign_up_text">Username</div>
