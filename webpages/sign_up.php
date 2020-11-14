@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <?php
 	//database variables
-	$dbserver = "localhost";
+	$dbserver = "34.121.103.176:3306";
 	$dbusername = "testuser1587";
 	$dbpassword = "woai1587";
 	$dbname = "catsdatabase";
