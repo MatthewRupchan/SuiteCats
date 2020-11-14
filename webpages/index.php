@@ -51,7 +51,7 @@
 			</tr>
 			</table>
             
-			<a href="signup.html">
+			<a href="sign_up.php">
 			<button class="road">
 			<h2 class="labels">Sign Up</h2></a></button>
 

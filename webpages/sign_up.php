@@ -10,8 +10,8 @@
 		
 	
 		$username = trim($_POST["username"]);
-		$password = trim($_POST["email"]);
-		$email = trim($_POST["password"]);
+		$password = trim($_POST["password"]);
+		$email = trim($_POST["email"]);
 		$starting_money = 50;
 		
 		//PHP verification that the data is good and will fit into the database
@@ -22,20 +22,20 @@
 			if ($database->connect_error) {
 				die("Connection failed: " . $database->connect_error);
 			}
-			
-			$query = ""; //TODO Retrieve usernames that are like the inputted username
+			//Retrieve usernames that are like the inputted username
+			$query = "SELECT user_name FROM user_table WHERE user_name = \"" . $username . "\";"; 
 			$results = $database->query($query);
 			if ($results->num_rows > 0) { //require a unique username
-				$db->close();
+				$database->close();
 				$error = "Username has already been taken.";
 			} else { //upload information
-				$query = ""; //insert user information into the table, make a new row with username, password, email, and starting money
-				
+				//insert user information into the table, make a new row with username, password, email, and starting money
+				$query = "INSERT INTO user_table (user_name, user_password, email, money) VALUES (\"" . $username . "\", \"" . $password . "\", \"" .$email . "\", \"" . $starting_money . "\");"; 
 				if (!$database->query($query)) { //Check if it fails
-					$db->close();
+					$database->close();
 					die("Failed to upload user information.");
 				}
-				$db->close();
+				$database->close();
 				header("Location: index.php"); //Success, redirect to main page
 			}
 		}
