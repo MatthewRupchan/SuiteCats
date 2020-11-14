@@ -8,7 +8,6 @@
 	
 	if (isset($_POST["submitted"]) && $_POST["submitted"] == 1) { //the form was submitted
 		
-	
 		$username = trim($_POST["username"]);
 		$password = trim($_POST["password"]);
 		$email = trim($_POST["email"]);
@@ -43,7 +42,6 @@
 		$error = ""; //no error message, this is the first visit to the page
 	}
 ?>
-
 
 <html>
 	<head>
