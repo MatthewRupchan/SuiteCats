@@ -24,7 +24,7 @@
 		//WHAT CHANGES DO WE MAKE IN THE ERROR SITUATION????
 		//can we make things red? this isn't js tho booooooo
 		
-		$query = ""; //get the user's information
+		$query = "SELECT user_id, user_name, money FROM user_table WHERE user_name LIKE \"" . $_POST["username"] . "\" AND password LIKE \"" . $_POST["password"] . "\";"; //get the user's information
 		$user_info = $database->query($query);
 		if ($user_info == null || $user_info == false) {
 			//invalid input
