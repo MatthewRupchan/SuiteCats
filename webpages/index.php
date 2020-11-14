@@ -1,5 +1,13 @@
 <!DOCTYPE HTML>
 
+<?PHP
+	session_start();
+	$dbserver = "localhost";
+	$dbusername = "testuser1587";
+	$dbpassword = "woai1587";
+	$dbname = "catsdatabase";	
+?>
+
 <html>
 	<head>
 		<title>Suite Cats</title>
@@ -14,17 +22,41 @@
 				<a href="index.php"><h3 id="website_title">Suite Cats</h3></a>
 				<img id="mascot" src="../cat_images/placeholder.png" alt="Mascot">
 				<div id="user_info_box">
-					<div id="username" class="user_box_element">Username<!--PHP INPUT--></div>
-					<div id="money" class="user_box_element">$420<!--PHP INPUT--></div>
-					<button id="log_out" class="user_box_element">Log Out</button>
-					<!--
-					DO A PHP CHECK HERE IF ON MAIN
-					contains either
-					1-
-					username, money, and log out button
-					2-
-					username input, password input, log in button
-					-->
+					<?PHP
+						if (isset($_SESSION["user"])) { //user is logged in, display their information
+						/*
+							$database = new mysqli($dbserver, $dbusername, $dbpassword, $dbname);
+							$query = ""; //get the user's information
+							$user_info = $database->query($query);
+							$user_info = $user_info->fetch_assoc(); //easier to work with.
+						*/
+					?>
+				
+						<div id="username" class="user_box_element"><?/*=$user_info["user_name"]*/?></div>
+						<div id="money" class="user_box_element">$<?/*=$user_info["money"]*/?></div>
+						<form action="index.php" id="logout">
+							<input type="hidden" name="logout" value="1"></input>
+							<button id="log_out" type="submit" class="user_box_element">Log Out</button> <!-- TODO make this log the user out -->
+						</form>
+					<?PHP
+						} else { //user is not logged in, display a log in form
+					?>
+					
+						<form id="login">
+							<div id="username" class="user_box_element">
+								<input name="username" type="text" placeholder="Username"></input>
+							</div>
+							<!--ID is money so it takes this row, equivalent to where money would be if logged in.-->
+							<div id="money" class="user_box_element"> 
+								<input name="password" type="password" placeholder="Password"></input>
+							</div>
+							<!--ID is log out so they have the same style-->
+							<button id="log_out" type="submit" class="user_box_element">Log In</button>
+						</form>
+					
+					<?PHP
+						}
+					?>
 				</div>
 			</div>
 	
