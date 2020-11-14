@@ -4,14 +4,14 @@
 	<head>
 		<title>Suite Cats</title>
 		<link rel="stylesheet" type="text/css" href="../css/style.css">
+		<link rel="stylesheet" type="text/css" href="../css/index.css">
 		<script type="text/javascript" src="../javascript/insertjavascriptfilehere.js"></script>
 	</head>
 	
 	<body>
 	
-		<header>
 			<div id="website_header"> 
-				<a href="../index.html"><h3 id="website_title">Suite Cats</h3></a>
+				<a href="index.php"><h3 id="website_title">Suite Cats</h3></a>
 				<img id="mascot" src="../cat_images/placeholder.png" alt="Mascot">
 				<div id="user_info_box">
 					<div id="username" class="user_box_element">Username<!--PHP INPUT--></div>
@@ -27,21 +27,35 @@
 					-->
 				</div>
 			</div>
-			
-			<menu>
-				<a href="suite.html"><h2 class="menu_button">Suite</h2></a>
-				<h2 class="menu_button">.</h2>
-				<a href="marketplace.html"><h2 class="menu_button">Marketplace</h2></a>
-				<h2 class="menu_button">.</h2>
-				<a href="adoption.html"><h2 class="menu_button">Adoption Center</h2></a>
-			</menu>
-		</header>
 	
 		<content> 
-			<!-- 
-			Every page has different contents
+			<!--3 big main icons to direct users to the other available pages
 			-->
-			<p>content wow!</p>
+			<table>
+			<tr>
+			
+			<th><div id="lowered_div"><a href="adoption.php">
+			<button id="icon_adoption"></button>
+			<h2 class="labels">Adoption Center</h2></div></a></th>
+			
+			
+			<th><div id="raised_div"><a href="suite.php">
+			<button id="icon_suite"></button>
+			<h2 class="labels">Suite</h2></div></a></th>
+			
+			
+			<th><div id ="lowered_div"><a href="marketplace.php">
+			<button id="icon_marketplace"></button>
+			<h2 class="labels">Marketplace</h2></div></a></th>
+			
+			</tr>
+			</table>
+            
+			<a href="signup.html">
+			<button class="road">
+			<h2 class="labels">Sign Up</h2></a></button>
+
+            
 		</content>
 		
 		<footer> 
