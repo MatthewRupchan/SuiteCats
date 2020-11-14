@@ -9,7 +9,7 @@
 <body>
     <header>
         <div id="website_header">
-            <a href="../index.html"><h3 id="website_title">Suite Cats</h3></a>
+            <a href="index.php"><h3 id="website_title">Suite Cats</h3></a>
             <img id="mascot" src="../cat_images/placeholder.png" alt="Mascot">
             <div id="user_info_box">
                 <div id="username" class="user_box_element">Username<!--PHP INPUT--></div>
@@ -18,11 +18,11 @@
             </div>
         </div>
         <menu>
-            <a href="suite.html"><h2 class="menu_button">Suite</h2></a>
-            <h2 class="menu_button">.</h2>
-            <a href="marketplace.html"><h2 class="menu_button">Marketplace</h2></a>
-            <h2 class="menu_button">.</h2>
-            <a href="adoption.html"><h2 class="menu_button">Adoption Center</h2></a>
+			<a href="adoption.php"><h2 class="menu_button">Adoption Center</h2></a>
+			<h2 class="menu_button">.</h2>
+			<a href="suite.php"><h2 class="menu_button">Suite</h2></a>
+			<h2 class="menu_button">.</h2>
+			<a href="marketplace.php"><h2 class="menu_button">Marketplace</h2></a>
         </menu>
     </header>
     <main>

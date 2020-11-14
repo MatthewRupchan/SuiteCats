@@ -12,15 +12,14 @@
 	
 		<header>
 			<div id="website_header"> 
-				<a href="../index.html"><h3 id="website_title">Suite Cats</h3></a>
+				<a href="index.php"><h3 id="website_title">Suite Cats</h3></a>
 			</div>
 		</header>
 	
 		<content> 
 			<div id="sign_up_title">Sign Up</div>
 			
-			<!--sign_up.html is temporary. should be sign_up.php to do server side stuff.-->
-			<form action="sign_up.html" method="post" enctype="multipart/form-data">
+			<form action="sign_up.php" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="submitted" value="1"></input>
 				<label id="sign_up_error_message" class="error_message"><!--PHP error messages--></label>
 				

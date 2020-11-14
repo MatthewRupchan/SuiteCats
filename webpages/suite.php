@@ -12,29 +12,21 @@
 	
 		<header>
 			<div id="website_header"> 
-				<a href="../index.html"><h3 id="website_title">Suite Cats</h3></a>
+				<a href="index.php"><h3 id="website_title">Suite Cats</h3></a>
 				<img id="mascot" src="../cat_images/placeholder.png" alt="Mascot">
 				<div id="user_info_box">
 					<div id="username" class="user_box_element">Username<!--PHP INPUT--></div>
 					<div id="money" class="user_box_element">$420<!--PHP INPUT--></div>
 					<button id="log_out" class="user_box_element">Log Out</button>
-					<!--
-					DO A PHP CHECK HERE IF ON MAIN
-					contains either
-					1-
-					username, money, and log out button
-					2-
-					username input, password input, log in button
-					-->
 				</div>
 			</div>
 			
 			<menu>
-				<a href="suite.html"><h2 class="menu_button">Suite</h5></a>
+				<a href="adoption.php"><h2 class="menu_button">Adoption Center</h2></a>
 				<h2 class="menu_button">.</h2>
-				<a href="marketplace.html"><h2 class="menu_button">Marketplace</h5></a>
+				<a href="suite.php"><h2 class="menu_button">Suite</h2></a>
 				<h2 class="menu_button">.</h2>
-				<a href="adoption.html"><h2 class="menu_button">Adoption Center</h5></a>
+				<a href="marketplace.php"><h2 class="menu_button">Marketplace</h2></a>
 			</menu>
 		</header>
 	
@@ -72,7 +64,7 @@
 							<td><img id="album_pic" src="../cat_images/placeholder.png" alt="my_cat"></td>
 						</tr>					
 						<tr>
-							<td><a href="interaction.html"><button id="visit_button">VISIT</button></a></td>
+							<td><a href="interaction.php"><button id="visit_button">VISIT</button></a></td>
 						</tr>	
 						<tr>
 						<!-- 
