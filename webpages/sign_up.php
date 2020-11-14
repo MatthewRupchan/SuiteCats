@@ -1,4 +1,49 @@
 <!DOCTYPE HTML>
+<?php
+	//database variables
+	$dbserver = "localhost";
+	$dbusername = "testuser1587";
+	$dbpassword = "woai1587";
+	$dbname = "catsdatabase";
+	
+	if (isset($_POST["submitted"]) && $_POST["submitted"] == 1) { //the form was submitted
+		
+	
+		$username = trim($_POST["username"]);
+		$password = trim($_POST["email"]);
+		$email = trim($_POST["password"]);
+		$starting_money = 50;
+		
+		//PHP verification that the data is good and will fit into the database
+		if (strlen($username) > 0 && strlen($username) < 255 && strlen($password) > 0 && strlen($password) < 255 && strlen($email) > 0 && strlen($email) < 255){
+			
+			$database = new mysqli($dbserver, $dbusername, $dbpassword, $dbname);
+			
+			if ($database->connect_error) {
+				die("Connection failed: " . $database->connect_error);
+			}
+			
+			$query = ""; //TODO Retrieve usernames that are like the inputted username
+			$results = $database->query($query);
+			if ($results->num_rows > 0) { //require a unique username
+				$db->close();
+				$error = "Username has already been taken.";
+			} else { //upload information
+				$query = ""; //insert user information into the table, make a new row with username, password, email, and starting money
+				
+				if (!$database->query($query)) { //Check if it fails
+					$db->close();
+					die("Failed to upload user information.");
+				}
+				$db->close();
+				header("Location: index.php"); //Success, redirect to main page
+			}
+		}
+	} else {
+		$error = ""; //no error message, this is the first visit to the page
+	}
+?>
+
 
 <html>
 	<head>
