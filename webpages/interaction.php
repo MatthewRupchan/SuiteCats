@@ -22,11 +22,11 @@
 			</div>
 			
 			<menu>
+				<a href="adoption.php"><h2 class="menu_button">Adoption Center</h2></a>
+				<h2 class="menu_button">.</h2>
 				<a href="suite.php"><h2 class="menu_button">Suite</h2></a>
 				<h2 class="menu_button">.</h2>
 				<a href="marketplace.php"><h2 class="menu_button">Marketplace</h2></a>
-				<h2 class="menu_button">.</h2>
-				<a href="adoption.php"><h2 class="menu_button">Adoption Center</h2></a>
 			</menu>
 		</header>
 		
