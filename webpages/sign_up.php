@@ -1,7 +1,8 @@
 <!DOCTYPE HTML>
 <?php
 	//database variables
-	$dbserver = "34.121.103.176:3306";
+	//$dbserver = "34.121.103.176:3306";
+	$dbserver = "localhost";
 	$dbusername = "testuser1587";
 	$dbpassword = "woai1587";
 	$dbname = "catsdatabase";
@@ -29,7 +30,8 @@
 				$error = "Username has already been taken.";
 			} else { //upload information
 				//insert user information into the table, make a new row with username, password, email, and starting money
-				$query = "INSERT INTO user_table (user_name, user_password, email, money) VALUES (\"" . $username . "\", \"" . $password . "\", \"" .$email . "\", \"" . $starting_money . "\");"; 
+				$query = "INSERT INTO user_table (user_name, user_password, email, money) 
+				VALUES ('$username', '$password', '$email', '$starting_money');"; 
 				if (!$database->query($query)) { //Check if it fails
 					$database->close();
 					die("Failed to upload user information.");
