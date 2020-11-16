@@ -4,8 +4,7 @@
 	session_start();
 	
 	//database variables
-	//$dbserver = "34.121.103.176:3306";
-	$dbserver = "localhost";
+	$dbserver = "34.121.103.176:3306";
 	$dbusername = "testuser1587";
 	$dbpassword = "woai1587";
 	$dbname = "catsdatabase";
@@ -15,29 +14,23 @@
 	if (isset($_POST["logout"]) && $_POST["logout"] == "1") {
 		unset($_POST["logout"]);
 		session_destroy();
-		header("Location: home.php");
+		header("Location: index.php");
 	} elseif (isset($_POST["login"]) && $_POST["login"] == "1") {
 		//get the user information
 		$database = new mysqli($dbserver, $dbusername, $dbpassword, $dbname);
 		if ($database->connect_error) {
 			die("Connection failed: " . $database->connect_error);
 		}
-		//take user info from form
-		//WHAT CHANGES DO WE MAKE IN THE ERROR SITUATION????
-		//can we make things red? this isn't js tho booooooo
 		
 		$username = $_POST['username'];
         $password = $_POST['password'];
 
-		//TODO USE THE TEST!
         $username_v = clean_input($username);
         $password_v = clean_input($password);
 		
+		//get the user's information
 		$query = "SELECT user_id, user_name, money FROM user_table
         WHERE user_name='$username_v' and user_password='$password_v'";
-		//$query = "SELECT user_id, user_name, money FROM user_table WHERE 
-		//user_name LIKE \"" . $username_v . "\" AND password LIKE \"" . $password_v . "\";"; 
-		//get the user's information
 		
 		$user_info = $database->query($query);
 		if ($user_info = $user_info->fetch_assoc()) {
@@ -68,11 +61,11 @@
 					<?PHP
 						if (isset($_SESSION["user"])) { //user is logged in, display their information
 					?>
-						<div id="username" class="user_box_element"><?/*=$_SESSION["user_name"]*/?></div>
-						<div id="money" class="user_box_element">$<?/*=$_SESSION["money"]*/?></div>
+						<div id="username" class="user_box_element"><?=$_SESSION["user_name"]?></div>
+						<div id="money" class="user_box_element">$<?=$_SESSION["money"]?></div>
 						<form action="index.php" method="post" enctype="multipart/form-data" id="logout">
 							<input type="hidden" name="logout" value="1"></input>
-							<button id="log_out" type="submit" class="user_box_element">Log Out</button> <!-- TODO make this log the user out -->
+							<button id="log_out" type="submit" class="user_box_element">Log Out</button>
 						</form>
 					<?PHP
 						} else { //user is not logged in, display a log in form
@@ -87,7 +80,6 @@
 							<div id="money" class="user_box_element"> 
 								<input name="password" type="password" placeholder="Password"></input>
 							</div>
-							<!--ID is log out so they have the same style-->
 							<button id="log_in" type="submit" class="user_box_element">Log In</button>
 						</form>
 					<?PHP
@@ -150,5 +142,4 @@ function clean_input($data) {
     $data = htmlspecialchars($data);
     return $data;
 }
-
 ?>
