@@ -4,11 +4,13 @@
 	session_start();
 	
 	//database variables
+	//$dbserver = "34.121.103.176:3306";
 	$dbserver = "localhost";
 	$dbusername = "testuser1587";
 	$dbpassword = "woai1587";
 	$dbname = "catsdatabase";
 	
+	$error = "";
 	//check if the log in / log out forms were submitted
 	if (isset($_POST["logout"]) && $_POST["logout"] == "1") {
 		unset($_POST["logout"]);
@@ -24,16 +26,27 @@
 		//WHAT CHANGES DO WE MAKE IN THE ERROR SITUATION????
 		//can we make things red? this isn't js tho booooooo
 		
-		$query = "SELECT user_id, user_name, money FROM user_table WHERE user_name LIKE \"" . $_POST["username"] . "\" AND password LIKE \"" . $_POST["password"] . "\";"; //get the user's information
+		$username = $_POST['username'];
+        $password = $_POST['password'];
+
+		//TODO USE THE TEST!
+        $username_v = clean_input($username);
+        $password_v = clean_input($password);
+		
+		$query = "SELECT user_id, user_name, money FROM user_table
+        WHERE user_name='$username_v' and user_password='$password_v'";
+		//$query = "SELECT user_id, user_name, money FROM user_table WHERE 
+		//user_name LIKE \"" . $username_v . "\" AND password LIKE \"" . $password_v . "\";"; 
+		//get the user's information
+		
 		$user_info = $database->query($query);
-		if ($user_info == null || $user_info == false) {
-			//invalid input
-			$error = 1;
-		} else {
-			$user_info = $user_info->fetch_assoc(); //easier to work with.
+		if ($user_info = $user_info->fetch_assoc()) {
 			$_SESSION["user"] = $user_info["user_id"];
 			$_SESSION["user_name"] = $user_info["user_name"];
 			$_SESSION["money"] = $user_info["money"];
+		} else {
+			//invalid input
+			$error = "Invalid username or password.";
 		}
 	}
 ?>
@@ -55,7 +68,6 @@
 					<?PHP
 						if (isset($_SESSION["user"])) { //user is logged in, display their information
 					?>
-				
 						<div id="username" class="user_box_element"><?/*=$_SESSION["user_name"]*/?></div>
 						<div id="money" class="user_box_element">$<?/*=$_SESSION["money"]*/?></div>
 						<form action="index.php" method="post" enctype="multipart/form-data" id="logout">
@@ -65,24 +77,19 @@
 					<?PHP
 						} else { //user is not logged in, display a log in form
 					?>
-					
 						<form action="index.php" method="post" enctype="multipart/form-data" id="login">
+							<div id="log_in_error_message"><?=$error?></div> <!-- PHP Error Message -->
 							<input type="hidden" name="login" value="1"></input>
 							<div id="username" class="user_box_element">
-								<input name="username" type="text" placeholder="Username" 
-									<?PHP if(isset($error) && $error == 1){ ?>style="border: solid red 4px;" <?PHP } ?>><!--make input red if there is a log in error-->
-								</input>
+								<input name="username" type="text" placeholder="Username"></input>
 							</div>
 							<!--ID is money so it takes this row, equivalent to where money would be if logged in.-->
 							<div id="money" class="user_box_element"> 
-								<input name="password" type="password" placeholder="Password"
-									<?PHP if(isset($error) && $error == 1){ ?>style="border: solid red 4px;" <?PHP } ?>><!--make input red if there is a log in error-->
-								</input>
+								<input name="password" type="password" placeholder="Password"></input>
 							</div>
 							<!--ID is log out so they have the same style-->
-							<button id="log_out" type="submit" class="user_box_element">Log In</button>
+							<button id="log_in" type="submit" class="user_box_element">Log In</button>
 						</form>
-					
 					<?PHP
 						}
 					?>
@@ -90,8 +97,7 @@
 			</div>
 	
 		<content> 
-			<!--3 big main icons to direct users to the other available pages
-			-->
+			<!--3 big main icons to direct users to the other available pages-->
 			<table>
 			<tr>
 			
@@ -135,3 +141,14 @@
 	</body>
 	
 </html>
+
+<?PHP
+//FUNCTIONS
+function clean_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+?>
