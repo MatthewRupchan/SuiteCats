@@ -6,6 +6,7 @@
 	$dbpassword = "woai1587";
 	$dbname = "catsdatabase";
 	
+	$error = ""; 
 	if (isset($_POST["submitted"]) && $_POST["submitted"] == 1) { //the form was submitted
 		
 		$username = trim($_POST["username"]);
@@ -39,8 +40,6 @@
 				header("Location: index.php"); //Success, redirect to main page
 			}
 		}
-	} else {
-		$error = ""; //no error message, this is the first visit to the page
 	}
 ?>
 
