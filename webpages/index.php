@@ -118,6 +118,10 @@
 			<button class="road">
 			<h2 class="labels">Sign Up</h2></a></button>
 			<?PHP
+				} else { //user is not logged in, display a log in form
+			?>
+			<div id="road_spacer"></div>
+			<?PHP
 				}
 			?>
             

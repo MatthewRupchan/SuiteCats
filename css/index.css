@@ -63,6 +63,12 @@ Implement PHP to disable and hide button for when user is logged in.*/
 	background-color:#3B2713;
 }
 
+#road_spacer {
+	width: 100%;
+	float:center;
+	min-height: 82px;
+}
+
 /*5. Log In Form */
 #log_in_error_message {
 	color: red;
