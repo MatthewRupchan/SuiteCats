@@ -4,7 +4,8 @@ Table of contents:
 2. Div groups (affects the levelling of the icons)
 3. Map Icons and Labels
 4. Road/SignUp Button
-5. Background of the Website and adjustable content sizing
+5. Log In Form styling
+6. Background of the Website and adjustable content sizing
 */
 
 
@@ -62,4 +63,22 @@ Implement PHP to disable and hide button for when user is logged in.*/
 	background-color:#3B2713;
 }
 
-/*5. Background of the Website and adjustable content sizing*/
+#road_spacer {
+	width: 100%;
+	float:center;
+	min-height: 82px;
+}
+
+/*5. Log In Form */
+#log_in_error_message {
+	color: red;
+}
+
+#log_in {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+	margin: 5px;
+}
+
+/*6. Background of the Website and adjustable content sizing*/
