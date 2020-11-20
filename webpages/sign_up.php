@@ -1,4 +1,47 @@
 <!DOCTYPE HTML>
+<?php
+	//database variables
+	$dbserver = "34.121.103.176:3306";
+	$dbusername = "testuser1587";
+	$dbpassword = "woai1587";
+	$dbname = "catsdatabase";
+	
+	$error = ""; 
+	if (isset($_POST["submitted"]) && $_POST["submitted"] == 1) { //the form was submitted
+		
+		$username = trim($_POST["username"]);
+		$password = trim($_POST["password"]);
+		$email = trim($_POST["email"]);
+		$starting_money = 50;
+		
+		//PHP verification that the data is good and will fit into the database
+		if (strlen($username) > 0 && strlen($username) < 255 && strlen($password) > 0 && strlen($password) < 255 && strlen($email) > 0 && strlen($email) < 255){
+			
+			$database = new mysqli($dbserver, $dbusername, $dbpassword, $dbname);
+			
+			if ($database->connect_error) {
+				die("Connection failed: " . $database->connect_error);
+			}
+			//Retrieve usernames that are like the inputted username
+			$query = "SELECT user_name FROM user_table WHERE user_name = \"" . $username . "\";"; 
+			$results = $database->query($query);
+			if ($results->num_rows > 0) { //require a unique username
+				$database->close();
+				$error = "Username has already been taken.";
+			} else { //upload information
+				//insert user information into the table, make a new row with username, password, email, and starting money
+				$query = "INSERT INTO user_table (user_name, user_password, email, money) 
+				VALUES ('$username', '$password', '$email', '$starting_money');"; 
+				if (!$database->query($query)) { //Check if it fails
+					$database->close();
+					die("Failed to upload user information.");
+				}
+				$database->close();
+				header("Location: index.php"); //Success, redirect to main page
+			}
+		}
+	}
+?>
 
 <html>
 	<head>
@@ -21,7 +64,7 @@
 			
 			<form action="sign_up.php" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="submitted" value="1"></input>
-				<label id="sign_up_error_message" class="error_message"><!--PHP error messages--></label>
+				<label id="sign_up_error_message" class="error_message"><?=$error?></label>
 				
 				<div class="sign_up_row">
 					<div class="sign_up_text">Username</div>
