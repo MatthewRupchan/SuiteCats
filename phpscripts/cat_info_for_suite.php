@@ -15,6 +15,8 @@ function retrieve_users_cats($userid, $page) {
 	$cats = $database->query($query);
 	$pages = ceil($cats->num_rows / 6);
 	
+	$database->close();
+	
 	$num_cats = 0;
 	for ($i = 0; $i < $pages; $i++) {
 		if ($i == $page) {
@@ -40,6 +42,26 @@ function retrieve_users_cats($userid, $page) {
 
 function make_index($page, $element) {
     return ($page*6) + $element;
+}
+
+function rename_cat($newname, $cat_id) {
+	$dbserver = "34.121.103.176:3306";
+	$dbusername = "testuser1587";
+	$dbpassword = "woai1587";
+	$dbname = "catsdatabase";
+	
+	$database = new mysqli($dbserver, $dbusername, $dbpassword, $dbname);
+	if ($database->connect_error) {
+		die("Connection failed: " . $database->connect_error);
+	}
+	
+	$query = "UPDATE cats_table SET cat_name = '$newname' WHERE cat_id = '$cat_id';";
+	if(!$database->query($query)) {
+		die("Failed to upload new cat name, please try again later.");
+	}
+	
+	$database->close();
+	return;
 }
 
 ?>

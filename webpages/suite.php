@@ -5,13 +5,8 @@
 /*
 TODO
 implement rename
-implement pages
 implement filling in default cat # 1
-implement picking a new cat to focus on
-
-TODO
-
-
+implement picking a new cat to focus on (ajax i think it's gotta be)
 */
 
 	session_start();
@@ -21,7 +16,9 @@ TODO
 	$dbpassword = "woai1587";
 	$dbname = "catsdatabase";
 	
-	$queryforrenaming = "UPDATE cats_table SET cat_name = 'the name you want' WHERE cat_id = the specific cat's id;";
+	if(isset($_POST["rename_submit"]) && $_POST["rename_submit"] == 1) {
+		rename_cat($_POST["cat_name"], $_POST["cat_id"]);
+	}
 	
 	if (isset($_POST["logout"]) && $_POST["logout"] == "1") { //the user pressed the log out button
 		unset($_POST["logout"]);
@@ -52,7 +49,6 @@ TODO
 		<title>Suite Cats</title>
 		<link rel="stylesheet" type="text/css" href="../css/style.css">
 		<link rel="stylesheet" type="text/css" href="../css/suite.css">
-		<script type="text/javascript" src="../javascript/insertjavascriptfilehere.js"></script>
 	</head>
 	
 	<body>
@@ -95,7 +91,7 @@ TODO
 					-->
 					<table id="info_col">
 						<?php
-							if ($num_cats > 0) { //standard, show the first cat
+							if ($num_cats <= 0) { //standard, show the first cat
 						?>
 						<tr>
 							<th><div class="heading">Suite Overview</div></th>
@@ -106,8 +102,10 @@ TODO
 						PHP for Enabling/Disabling Name Textbox (through Rename Button)
 						Rename Button will have a pencil icon instead of the R
 						-->	
-							<form>
-							<td><input id="name" type="text" name="cat_name" placeholder="Name" enabled><button id="rename_button">R</button></td>
+							<form action="suite.php" method="post" enctype="multipart/form-data">
+							<input type="hidden" name="rename_submit" value="1"></input>
+							<input type="hidden" name="cat_id" value="<?=0?>"></input> <!-- default the first cat, update this value with ajax javascript -->
+							<td><input id="name" type="text" name="cat_name" value="Name" readonly><button id="rename_button" title="Rename">R</button></td>
 							</form>
 						</tr>					
 						<tr>
@@ -237,7 +235,7 @@ TODO
 			-->
 			<p id="footer_info">CS 372 Fall 2020</p>
 		</footer>
-		
+		<script type="text/javascript" src="../javascript/rename.js"></script>
 	</body>
 	
 </html>
