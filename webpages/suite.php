@@ -1,7 +1,25 @@
 <!DOCTYPE HTML>
 
 <?PHP
+	include '../phpscripts/cat_info_for_suite.php';
+/*
+TODO
+implement rename
+implement pages
+implement filling in default cat # 1
+implement picking a new cat to focus on
+
+TODO
+
+
+*/
+
 	session_start();
+	//database variables
+	$dbserver = "34.121.103.176:3306";
+	$dbusername = "testuser1587";
+	$dbpassword = "woai1587";
+	$dbname = "catsdatabase";
 	
 	$queryforrenaming = "UPDATE cats_table SET cat_name = 'the name you want' WHERE cat_id = the specific cat's id;";
 	
@@ -9,36 +27,18 @@
 		unset($_POST["logout"]);
 		session_destroy();
 		header("Location: index.php");
-	}
-	
-	if (!isset($_SESSION["user"])) { //user is trying to access the page not logged in
+	} elseif (!isset($_SESSION["user"])) { //user is trying to access the page not logged in
 		header("Location: index.php");
-	}
-	
-	//database variables
-	$dbserver = "34.121.103.176:3306";
-	$dbusername = "testuser1587";
-	$dbpassword = "woai1587";
-	$dbname = "catsdatabase";
-	
-	$database = new mysqli($dbserver, $dbusername, $dbpassword, $dbname);
-	if ($database->connect_error) {
-		die("Connection failed: " . $database->connect_error);
-	}
+	} 
 	
 	$userid = $_SESSION["user"];
-	$query = "SELECT * FROM cat_table WHERE user_id LIKE '$userid';";
-	$cats = $database->query($query);
-	$total_cats = $cats->num_rows;
-	$pages = ceil($total_cats / 6);
-	$page = 1; //start on page 1
-	
-	//2D array of cats. [Page][Position on Page (1-6)]
+	$page = 1; //default to page 1
+	$results = retrieve_users_cats($userid, $page);
+	$num_cats = $results["num_cats"];
+	$pages = $results["pages"];
 	$catarray;
-	for ($i = 0; $i < $pages; $i++) {
-		for ($j = 0; $j < 6; $j++) {
-			$catarray[$i][$j] = $cats[make_index($i, $j)]->fetch_assoc();
-		}
+	for ($i = 0; $i < $num_cats; $i++) {
+		$catarray[$i] = $results["catarray"][$i];
 	}
 ?>
 
@@ -90,7 +90,7 @@
 					-->
 					<table id="info_col">
 						<?php
-							if ($total_cats > 0) { //standard, show the first cat
+							if ($num_cats > 0) { //standard, show the first cat
 						?>
 						<tr>
 							<th><div class="heading">Suite Overview</div></th>
@@ -153,11 +153,11 @@
 							//TODO may need to adjust the cat url text depending on what's stored.
 							//	currently assumes that the stored url starts with "cat_images/..."
 							for ($j = 0; $j < 3; $j++) {
-								if (make_index($page, $j) > $total_cats) {
+								if ($j > $num_cats - 1) {
 									break;
 								}
 						?>
-							<td><div id="cats_names"><?=$catarray[$page][$j]["cat_name"]?></div><img id="album_pic" src="../<?=$catarray[$page][$j]["cat_URL"]?>" alt="my_cat"></td>
+							<td><div id="cats_names"><?=$catarray[$j]["cat_name"]?></div><img id="album_pic" src="../<?=$catarray[$j]["cat_URL"]?>" alt="my_cat"></td>
 						<?php
 							}
 						?>
@@ -165,11 +165,11 @@
 						<tr class="cat_row">
 						<?php
 							for ($j = 3; $j < 6; $j++) {
-								if (make_index($page, $j) > $total_cats) {
+								if ($j > $num_cats - 1) {
 									break;
 								}
 						?>
-							<td><div id="cats_names"><?=$catarray[$page][$j]["cat_name"]?></div><img id="album_pic" src="../<?=$catarray[$page][$j]["cat_URL"]?>" alt="my_cat"></td>
+							<td><div id="cats_names"><?=$catarray[$j]["cat_name"]?></div><img id="album_pic" src="../<?=$catarray[$j]["cat_URL"]?>" alt="my_cat"></td>
 						</tr>
 						<?php
 							}
@@ -200,10 +200,3 @@
 	</body>
 	
 </html>
-
-<?PHP
-//FUNCTIONS
-function make_index($page, $element) {
-    return ($page*6) + $element;
-}
-?>
