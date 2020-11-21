@@ -2,13 +2,8 @@
 
 <?PHP
 	session_start();
-	//database variables (more sets of the same in functions down below)
-	$dbserver = "34.121.103.176:3306";
-	$dbusername = "testuser1587";
-	$dbpassword = "woai1587";
-	$dbname = "catsdatabase";
 	
-	if(isset($_POST["rename_submit"]) && $_POST["rename_submit"] == 1) {
+	if(isset($_POST["rename_submit"]) && $_POST["rename_submit"] == 1) { //the user is renaming their cat
 		rename_cat($_POST["cat_name"], $_POST["cat_id"]);
 	}
 	
@@ -20,12 +15,13 @@
 		header("Location: index.php");
 	} 
 	
-	if (isset($_POST["page"])) {
+	if (isset($_POST["page"])) { //for when a page button is pressed
 		$page = $_POST["page"];
 	} else {
 		$page = 1; //default to page 1
 	}
 	
+	//get cat information for display
 	$userid = $_SESSION["user"];
 	$results = retrieve_users_cats($userid, $page);
 	$num_cats = $results["num_cats"];
@@ -83,7 +79,7 @@
 					-->
 					<table id="info_col">
 						<?php
-							if ($num_cats > 0) { //standard, show the first cat
+							if ($num_cats > 0) {
 						?>
 						<tr>
 							<th><div class="heading">Suite Overview</div></th>
@@ -100,7 +96,7 @@
 						</tr>					
 						<tr>
 							<!-- 
-							If the image url is updated also update the ajax file!
+							If the image url is updated, please also update the ajax file!
 							-->	
 							<td><img id="album_pic" class="overview_pic" src="../<?=$catarray[0]["Img_URL"]?>" alt="<?=$catarray[0]["cat_name"]?>"></td>
 						</tr>					

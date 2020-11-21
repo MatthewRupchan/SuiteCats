@@ -109,7 +109,7 @@ table {
 	height: 30px;
 }
 
-/**/
+/*Focused cat has bigger image and not clickable suggestion cursor*/
 .overview_pic {
 	height:170px;
 	width:170px;
@@ -150,7 +150,7 @@ table {
 
 /*The maximum or minimum page has been reached*/
 button:disabled {
-	background-color: #f3ead9;
+	background-color: #f3ead9; /*Slightly lighter than if enabled. May want to update colouring?*/
 	cursor: not-allowed;
 }
 
@@ -160,6 +160,7 @@ button:disabled {
 	min-width: 175px;
 }
 
+/*Avoids the page buttons stacking.*/
 form{
 	float: left;
 }

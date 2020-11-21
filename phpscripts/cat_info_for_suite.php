@@ -36,12 +36,4 @@
 	
 	echo json_encode($message)
 
-/*
-
-FROM JASON:: Update database. it will need interaction timers for all 4 interactions.
-could keep the current "interaction_timer" as information on the last time the cat was interacted with at all.
-
-*/
-
-
 ?>
