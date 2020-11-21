@@ -1,5 +1,26 @@
 <!DOCTYPE HTML>
 
+<?PHP
+	session_start();
+	
+	if (isset($_POST["logout"]) && $_POST["logout"] == "1") { //the user pressed the log out button
+		unset($_POST["logout"]);
+		session_destroy();
+		header("Location: index.php");
+	}
+	
+	if (!isset($_SESSION["user"])) { //user is trying to access the page not logged in
+		header("Location: index.php");
+	}
+	
+	//database variables
+	$dbserver = "34.121.103.176:3306";
+	$dbusername = "testuser1587";
+	$dbpassword = "woai1587";
+	$dbname = "catsdatabase";
+	
+?>
+
 <html>
 	<head>
 		<title>Suite Cats</title>
@@ -14,10 +35,16 @@
 			<div id="website_header"> 
 				<a href="index.php"><h3 id="website_title">Suite Cats</h3></a>
 				<img id="mascot" src="../cat_images/placeholder.png" alt="Mascot">
+				
+				
+				
 				<div id="user_info_box">
-					<div id="username" class="user_box_element">Username<!--PHP INPUT--></div>
-					<div id="money" class="user_box_element">$420<!--PHP INPUT--></div>
-					<button id="log_out" class="user_box_element">Log Out</button>
+					<div id="username" class="user_box_element"><?=$_SESSION["user_name"]?></div>
+					<div id="money" class="user_box_element">$<?=$_SESSION["money"]?></div>
+					<form action="index.php" method="post" enctype="multipart/form-data" id="logout">
+						<input type="hidden" name="logout" value="1"></input>
+						<button id="log_out" type="submit" class="user_box_element">Log Out</button>
+					</form>
 				</div>
 			</div>
 			
