@@ -19,6 +19,25 @@
 	$dbpassword = "woai1587";
 	$dbname = "catsdatabase";
 	
+	$database = new mysqli($dbserver, $dbusername, $dbpassword, $dbname);
+	if ($database->connect_error) {
+		die("Connection failed: " . $database->connect_error);
+	}
+	
+	$userid = $_SESSION["user"];
+	$query = "SELECT * FROM cat_table WHERE user_id LIKE '$userid';";
+	$cats = $database->query($query);
+	$total_cats = $cats->num_rows;
+	$pages = ceil($total_cats / 6);
+	$page = 1; //start on page 1
+	
+	//2D array of cats. [Page][Position on Page (1-6)]
+	$catarray;
+	for ($i = 0; $i < $pages; $i++) {
+		for ($j = 0; $j < 6; $j++) {
+			$catarray[$i][$j] = $cats[make_index($i, $j)]->fetch_assoc();
+		}
+	}
 ?>
 
 <html>
@@ -35,9 +54,6 @@
 			<div id="website_header"> 
 				<a href="index.php"><h3 id="website_title">Suite Cats</h3></a>
 				<img id="mascot" src="../cat_images/placeholder.png" alt="Mascot">
-				
-				
-				
 				<div id="user_info_box">
 					<div id="username" class="user_box_element"><?=$_SESSION["user_name"]?></div>
 					<div id="money" class="user_box_element">$<?=$_SESSION["money"]?></div>
@@ -71,6 +87,7 @@
 					Info Table
 					-->
 					<table id="info_col">
+						
 						<tr>
 							<th><div class="heading">Suite Overview</div></th>
 						</tr>
@@ -111,23 +128,38 @@
 						PHP array for the pictures and the names of the cats
 						-->	
 						<th colspan="3"></th>
+						<?php
+							//account for no pages eh!
+							//TODO may need to adjust the cat url text depending on what's stored.
+							//	currently assumes that the stored url starts with "cat_images/..."
+							for ($j = 0; $j < 3; $j++) {
+								if (make_index($page, $j) > $total_cats) {
+									break;
+								}
+						?>
 						<tr>
-							<td><div id="cats_names">Stewie</div><img id="album_pic" src="../cat_images/placeholder.png" alt="my_cat"></td>
-							<td><div id="cats_names">Stewie</div><img id="album_pic" src="../cat_images/placeholder.png" alt="my_cat"></td>
-							<td><div id="cats_names">Stewie</div><img id="album_pic" src="../cat_images/placeholder.png" alt="my_cat"></td>
+							<td><div id="cats_names"><?=$catarray[$page][$j]["cat_name"]?></div><img id="album_pic" src="../<?=$catarray[$page][$j]["cat_URL"]?>" alt="my_cat"></td>
 						</tr>
+						<?php
+							}
+							for ($j = 3; $j < 6; $j++) {
+								if (make_index($page, $j) > $total_cats) {
+									break;
+								}
+						?>
 						<tr>
-							<td><div id="cats_names">Stewie</div><img id="album_pic" src="../cat_images/placeholder.png" alt="my_cat"></td>
-							<td><div id="cats_names">Stewie</div><img id="album_pic" src="../cat_images/placeholder.png" alt="my_cat"></td>
-							<td><div id="cats_names">Stewie</div><img id="album_pic" src="../cat_images/placeholder.png" alt="my_cat"></td>
+							<td><div id="cats_names"><?=$catarray[$page][$j]["cat_name"]?></div><img id="album_pic" src="../<?=$catarray[$page][$j]["cat_URL"]?>" alt="my_cat"></td>
 						</tr>
+						<?php
+							}
+						?>
 						<!--
 						Changing button images to match what is posted on storyboard
 						Also enable/disable these buttons when on the last or first pages.
 						-->	
 						<tr>
 							<td><button id="page_buttons"><<</button><button id="page_buttons"><</button></td>
-							<td><div id="page_label">Page: 1</div></td>
+							<td><div id="page_label">Page: <?=$page?></div></td>
 							<td><button id="page_buttons">></button><button id="page_buttons">>></button></td>
 						</tr>					
 					</table>
@@ -147,3 +179,10 @@
 	</body>
 	
 </html>
+
+<?PHP
+//FUNCTIONS
+function make_index($page, $element) {
+    return ($page*6) + $element;
+}
+?>
