@@ -131,7 +131,7 @@ table {
 }
 
 /*Page buttons*/
-#page_buttons {
+.page_buttons {
 	border: none;
 	background-color: #e3d4b5;
 	text-decoration: none;
@@ -141,6 +141,17 @@ table {
 	margin-right: 5px;
 }
 
+/*The maximum or minimum page has been reached*/
+button:disabled {
+	background-color: #f3ead9;
+	cursor: not-allowed;
+}
+
+/*Keep page buttons at the bottom even when there is no cats */
 .cat_row {
 	height: 175px;
+}
+
+form{
+	float: left;
 }

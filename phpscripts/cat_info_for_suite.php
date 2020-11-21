@@ -1,5 +1,5 @@
 <?php
-
+// this doesn't need its own file really...
 function retrieve_users_cats($userid, $page) {
 	$dbserver = "34.121.103.176:3306";
 	$dbusername = "testuser1587";

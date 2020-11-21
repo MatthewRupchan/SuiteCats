@@ -31,8 +31,13 @@ TODO
 		header("Location: index.php");
 	} 
 	
+	if (isset($_POST["page"])) {
+		$page = $_POST["page"];
+	} else {
+		$page = 1; //default to page 1
+	}
+	
 	$userid = $_SESSION["user"];
-	$page = 1; //default to page 1
 	$results = retrieve_users_cats($userid, $page);
 	$num_cats = $results["num_cats"];
 	$pages = $results["pages"];
@@ -179,9 +184,45 @@ TODO
 						Also enable/disable these buttons when on the last or first pages.
 						-->	
 						<tr>
-							<td><button id="page_buttons"><<</button><button id="page_buttons"><</button></td>
+							<?php
+								if($page > 1) {
+									$enabled = "";
+								} else {
+									$enabled = "disabled";
+								}
+								//
+							?>
+							<td>
+								<form action="suite.php" method="post" enctype="multipart/form-data">
+									<input type="hidden" name="page" value="<?=1?>"></input>
+									<button class="page_buttons" <?=$enabled?>><<</button>
+								</form>
+								<form action="suite.php" method="post" enctype="multipart/form-data">
+									<input type="hidden" name="page" value="<?=$page - 1?>"></input>
+									<button class="page_buttons" <?=$enabled?>><</button>
+								</form>
+								
+							</td>
+							
 							<td><div id="page_label">Page: <?=$page?></div></td>
-							<td><button id="page_buttons">></button><button id="page_buttons">>></button></td>
+							
+							<?php
+								if($page < $pages) {
+									$enabled = "";
+								} else {
+									$enabled = "disabled";
+								}
+							?>
+							<td>
+								<form action="suite.php" method="post" enctype="multipart/form-data">
+									<input type="hidden" name="page" value="<?=$page + 1?>"></input>
+									<button class="page_buttons" <?=$enabled?>>></button>
+								</form>
+								<form action="suite.php" method="post" enctype="multipart/form-data">
+									<input type="hidden" name="page" value="<?=$pages?>"></input>
+									<button class="page_buttons" <?=$enabled?>>>></button>
+								</form>
+							</td>
 						</tr>					
 					</table>
 					</td>
