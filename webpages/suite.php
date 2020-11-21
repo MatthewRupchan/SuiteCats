@@ -4,7 +4,6 @@
 	include '../phpscripts/cat_info_for_suite.php';
 /*
 TODO
-implement filling in default cat # 1
 implement picking a new cat to focus on (ajax i think it's gotta be)
 */
 
@@ -90,37 +89,30 @@ implement picking a new cat to focus on (ajax i think it's gotta be)
 					-->
 					<table id="info_col">
 						<?php
-							if ($num_cats <= 0) { //standard, show the first cat
+							if ($num_cats > 0) { //standard, show the first cat
 						?>
 						<tr>
 							<th><div class="heading">Suite Overview</div></th>
 						</tr>
 						<tr>
 						<!-- 
-						PHP for Name of Cat
-						PHP for Enabling/Disabling Name Textbox (through Rename Button)
 						Rename Button will have a pencil icon instead of the R
 						-->	
 							<form action="suite.php" method="post" enctype="multipart/form-data">
 							<input type="hidden" name="rename_submit" value="1"></input>
-							<input type="hidden" name="cat_id" value="<?=0?>"></input> <!-- default the first cat, update this value with ajax javascript -->
-							<td><input id="name" type="text" name="cat_name" value="Name" readonly><button id="rename_button" title="Rename">R</button></td>
+							<input type="hidden" name="cat_id" value="<?=$catarray[0]["cat_id"]?>"></input> <!-- default the first cat, update this value with ajax javascript -->
+							<td><input id="name" type="text" name="cat_name" value="<?=$catarray[0]["cat_name"]?>" readonly><button id="rename_button" title="Rename">R</button></td>
 							</form>
 						</tr>					
 						<tr>
-						<!--
-						PHP for picture of cat
-						-->	
-							<td><img id="album_pic" src="../cat_images/placeholder.png" alt="my_cat"></td>
+							<td><img id="album_pic" src="../<?=$catarray[0]["Img_url"]?>" alt="<?=$catarray[0]["cat_name"]?>"></td>
 						</tr>					
 						<tr>
-							<td><a href="interaction.php"><button id="visit_button">VISIT</button></a></td>
+							<td><a href="interaction.php?cat_id=<?=$catarray[0]["cat_id"]?>"><button id="visit_button">VISIT</button></a></td>
 						</tr>	
 						<tr>
-						<!-- 
-						PHP for last date visited
-						-->					
-							<td><div id="lastvisit"> Last Visited: 11/7/2020</div></td>
+						<!-- TODO: may need to update this element's PHP. May need calculations. -->					
+							<td><div id="lastvisit"> Last Visited: <?=$catarray[0]["interaction_timer"]?></div></td>
 						</tr>
 						<?php
 							} else { //new user likely! provide a link to the adoption center!
