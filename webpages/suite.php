@@ -1,12 +1,6 @@
 <!DOCTYPE HTML>
 
 <?PHP
-	include '../phpscripts/cat_info_for_suite.php';
-/*
-TODO
-implement picking a new cat to focus on (ajax i think it's gotta be)
-*/
-
 	session_start();
 	//database variables
 	$dbserver = "34.121.103.176:3306";
@@ -105,13 +99,16 @@ implement picking a new cat to focus on (ajax i think it's gotta be)
 							</form>
 						</tr>					
 						<tr>
-							<td><img id="album_pic" src="../<?=$catarray[0]["Img_url"]?>" alt="<?=$catarray[0]["cat_name"]?>"></td>
+							<!-- 
+							If the image url is updated also update the ajax file!
+							-->	
+							<td><img id="album_pic" class="album_pic" src="../<?=$catarray[0]["Img_url"]?>" alt="<?=$catarray[0]["cat_name"]?>"></td>
 						</tr>					
 						<tr>
-							<td><a href="interaction.php?cat_id=<?=$catarray[0]["cat_id"]?>"><button id="visit_button">VISIT</button></a></td>
+							<td><a id="visit_link" href="interaction.php?cat_id=<?=$catarray[0]["cat_id"]?>"><button id="visit_button">VISIT</button></a></td>
 						</tr>	
 						<tr>
-						<!-- TODO: may need to update this element's PHP. May need calculations. -->					
+						<!-- TODO: may need to update this element's PHP. May need calculations. If change, update AJAX -->					
 							<td><div id="lastvisit"> Last Visited: <?=$catarray[0]["interaction_timer"]?></div></td>
 						</tr>
 						<?php
@@ -137,13 +134,9 @@ implement picking a new cat to focus on (ajax i think it's gotta be)
 					Album Table
 					-->
 					<table>
-						<!--
-						PHP array for the pictures and the names of the cats
-						-->	
 						<th colspan="3"></th>
 						<tr class="cat_row">
 						<?php
-							//account for no pages eh!
 							//TODO may need to adjust the cat url text depending on what's stored.
 							//	currently assumes that the stored url starts with "cat_images/..."
 							for ($j = 0; $j < 3; $j++) {
@@ -151,7 +144,8 @@ implement picking a new cat to focus on (ajax i think it's gotta be)
 									break;
 								}
 						?>
-							<td><div id="cats_names"><?=$catarray[$j]["cat_name"]?></div><img id="album_pic" src="../<?=$catarray[$j]["cat_URL"]?>" alt="my_cat"></td>
+							<input type="hidden" id="cat<?=$j?>" value="<?=$catarray[$j]["cat_id"]?>"></input> <!-- use for ajax putting info on left hand panel -->
+							<td><div id="cats_names"><?=$catarray[$j]["cat_name"]?></div><img id="pic<?=$j?>" class="album_pic" src="../<?=$catarray[$j]["cat_URL"]?>" alt="my_cat"></td>
 						<?php
 							}
 						?>
@@ -163,14 +157,14 @@ implement picking a new cat to focus on (ajax i think it's gotta be)
 									break;
 								}
 						?>
-							<td><div id="cats_names"><?=$catarray[$j]["cat_name"]?></div><img id="album_pic" src="../<?=$catarray[$j]["cat_URL"]?>" alt="my_cat"></td>
+							<input type="hidden" id="cat<?=$j?>" value="<?=$catarray[$j]["cat_id"]?>"></input> <!-- use for ajax putting info on left hand panel -->
+							<td><div id="cats_names"><?=$catarray[$j]["cat_name"]?></div><img id="pic<?=$j?>" class="album_pic" src="../<?=$catarray[$j]["cat_URL"]?>" alt="my_cat"></td>
 						</tr>
 						<?php
 							}
 						?>
 						<!--
-						Changing button images to match what is posted on storyboard
-						Also enable/disable these buttons when on the last or first pages.
+						Change button images to match what is posted on storyboard
 						-->	
 						<tr>
 							<?php
@@ -179,7 +173,6 @@ implement picking a new cat to focus on (ajax i think it's gotta be)
 								} else {
 									$enabled = "disabled";
 								}
-								//
 							?>
 							<td>
 								<form action="suite.php" method="post" enctype="multipart/form-data">

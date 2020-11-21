@@ -114,10 +114,11 @@ table {
 */
 
 /*Picture Sizes of Multiple cats*/
-#album_pic {
+.album_pic {
 	height:150px;
 	width:150px;
 	padding: 10px;
+	cursor: pointer;
 }
 
 /*Labels for Multiple Cat Names*/
