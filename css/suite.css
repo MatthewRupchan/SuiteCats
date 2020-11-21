@@ -89,6 +89,26 @@ table {
 	margin-bottom: 30px;
 }
 
+/*For when the user has no cats*/
+#adoption_button {
+	border: none;
+	background-color: #9f7e3c;
+	text-decoration: none;
+	font-size: 35px;
+	padding: 15px 32px;
+	text-align:center;
+	margin-bottom: 30px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+/*For when the user has no cats*/
+#get_cat_prompt {
+	font-size: 20px;
+	margin-top: 95px;
+	height: 30px;
+}
+
 /*
 3.Overview Album
 */
@@ -119,4 +139,8 @@ table {
 	padding: 22px 20px;
 	text-align: center;
 	margin-right: 5px;
+}
+
+.cat_row {
+	height: 175px;
 }

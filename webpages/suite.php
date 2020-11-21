@@ -3,6 +3,8 @@
 <?PHP
 	session_start();
 	
+	$queryforrenaming = "UPDATE cats_table SET cat_name = 'the name you want' WHERE cat_id = the specific cat's id;";
+	
 	if (isset($_POST["logout"]) && $_POST["logout"] == "1") { //the user pressed the log out button
 		unset($_POST["logout"]);
 		session_destroy();
@@ -87,7 +89,9 @@
 					Info Table
 					-->
 					<table id="info_col">
-						
+						<?php
+							if ($total_cats > 0) { //standard, show the first cat
+						?>
 						<tr>
 							<th><div class="heading">Suite Overview</div></th>
 						</tr>
@@ -115,7 +119,22 @@
 						PHP for last date visited
 						-->					
 							<td><div id="lastvisit"> Last Visited: 11/7/2020</div></td>
+						</tr>
+						<?php
+							} else { //new user likely! provide a link to the adoption center!
+						?>
+						<tr>
+							<th><div class="heading">Get Started</div></th>
+						</tr>
+						<tr>
+							<th><div id="get_cat_prompt">Get your first cat from the</div></th>
+						</tr>
+						<tr>
+							<td><a href="adoption.php"><button id="adoption_button">ADOPTION CENTER</button></a></td>
 						</tr>	
+						<?php
+							}
+						?>	
 					</table>
 					</td>
 					
@@ -128,6 +147,7 @@
 						PHP array for the pictures and the names of the cats
 						-->	
 						<th colspan="3"></th>
+						<tr class="cat_row">
 						<?php
 							//account for no pages eh!
 							//TODO may need to adjust the cat url text depending on what's stored.
@@ -137,17 +157,18 @@
 									break;
 								}
 						?>
-						<tr>
 							<td><div id="cats_names"><?=$catarray[$page][$j]["cat_name"]?></div><img id="album_pic" src="../<?=$catarray[$page][$j]["cat_URL"]?>" alt="my_cat"></td>
-						</tr>
 						<?php
 							}
+						?>
+						</tr>
+						<tr class="cat_row">
+						<?php
 							for ($j = 3; $j < 6; $j++) {
 								if (make_index($page, $j) > $total_cats) {
 									break;
 								}
 						?>
-						<tr>
 							<td><div id="cats_names"><?=$catarray[$page][$j]["cat_name"]?></div><img id="album_pic" src="../<?=$catarray[$page][$j]["cat_URL"]?>" alt="my_cat"></td>
 						</tr>
 						<?php
