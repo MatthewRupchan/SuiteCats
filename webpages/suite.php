@@ -90,6 +90,7 @@
 						-->	
 							<form action="suite.php" method="post" enctype="multipart/form-data">
 							<input type="hidden" name="rename_submit" value="1"></input>
+							<input type="hidden" name="page" value="<?=$page?>"></input> <!-- stay on this page after renaming -->
 							<input type="hidden" id="rename_cat_id" name="cat_id" value="<?=$catarray[0]["cat_id"]?>"></input> <!-- default the first cat, update this value with ajax javascript -->
 							<td><input id="name" type="text" name="cat_name" value="<?=$catarray[0]["cat_name"]?>" readonly><button id="rename_button" title="Rename">R</button></td>
 							</form>
@@ -154,10 +155,10 @@
 						?>
 							<input type="hidden" id="cat<?=$j?>" value="<?=$catarray[$j]["cat_id"]?>"></input> <!-- used for ajax putting info on left hand panel -->
 							<td><div id="cats_names"><?=$catarray[$j]["cat_name"]?></div><img id="pic<?=$j?>" class="album_pic" src="../<?=$catarray[$j]["Img_URL"]?>" alt="<?=$catarray[$j]["cat_name"]?>"></td>
-						</tr>
 						<?php
 							}
 						?>
+						</tr>
 						<!--
 						Change button images to match what is posted on storyboard
 						-->	
@@ -170,13 +171,16 @@
 								}
 							?>
 							<td>
+								<!--Big Jump-->
 								<form action="suite.php" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="page" value="<?=1?>"></input>
-									<button class="page_buttons" <?=$enabled?>><<</button>
+									<button class="page_buttons page_left" <?=$enabled?>><<</button>
 								</form>
+								
+								<!--One Page Jump-->
 								<form action="suite.php" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="page" value="<?=$page - 1?>"></input>
-									<button class="page_buttons" <?=$enabled?>><</button>
+									<button class="page_buttons page_left" <?=$enabled?>><</button>
 								</form>
 								
 							</td>
@@ -191,13 +195,16 @@
 								}
 							?>
 							<td>
-								<form action="suite.php" method="post" enctype="multipart/form-data">
-									<input type="hidden" name="page" value="<?=$page + 1?>"></input>
-									<button class="page_buttons" <?=$enabled?>>></button>
-								</form>
+								<!--Big Jump-->
 								<form action="suite.php" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="page" value="<?=$pages?>"></input>
-									<button class="page_buttons" <?=$enabled?>>>></button>
+									<button class="page_buttons page_right" <?=$enabled?>>>></button>
+								</form>
+								
+								<!--One Page Jump-->
+								<form action="suite.php" method="post" enctype="multipart/form-data">
+									<input type="hidden" name="page" value="<?=$page + 1?>"></input>
+									<button class="page_buttons page_right" <?=$enabled?>>></button>
 								</form>
 							</td>
 						</tr>					

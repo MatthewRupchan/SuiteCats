@@ -156,11 +156,20 @@ button:disabled {
 
 /*Keep page buttons at the bottom even when there is no cats */
 .cat_row {
-	height: 175px;
-	min-width: 175px;
+	height: 198.5px;
 }
 
 /*Avoids the page buttons stacking.*/
-form{
+.page_left {
 	float: left;
+	margin-left: 5px;
+}
+
+.page_right {
+	float: right;
+	margin-right: 5px;
+}
+
+td{
+	min-width: 172px;
 }
