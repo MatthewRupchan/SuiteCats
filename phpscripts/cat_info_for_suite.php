@@ -28,8 +28,6 @@
 	0		Img_URL
 	1		cat_name
 	2		interaction_timer
-	
-		*double check this table is correct.
 	*/
 	$cat = $cat->fetch_assoc();
 	$message[0] = $cat["Img_URL"];

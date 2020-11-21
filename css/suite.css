@@ -109,6 +109,12 @@ table {
 	height: 30px;
 }
 
+/**/
+.overview_pic {
+	height:170px;
+	width:170px;
+}
+
 /*
 3.Overview Album
 */
@@ -151,6 +157,7 @@ button:disabled {
 /*Keep page buttons at the bottom even when there is no cats */
 .cat_row {
 	height: 175px;
+	min-width: 175px;
 }
 
 form{

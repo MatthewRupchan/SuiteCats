@@ -2,7 +2,7 @@
 
 <?PHP
 	session_start();
-	//database variables
+	//database variables (more sets of the same in functions down below)
 	$dbserver = "34.121.103.176:3306";
 	$dbusername = "testuser1587";
 	$dbpassword = "woai1587";
@@ -94,7 +94,7 @@
 						-->	
 							<form action="suite.php" method="post" enctype="multipart/form-data">
 							<input type="hidden" name="rename_submit" value="1"></input>
-							<input type="hidden" name="cat_id" value="<?=$catarray[0]["cat_id"]?>"></input> <!-- default the first cat, update this value with ajax javascript -->
+							<input type="hidden" id="rename_cat_id" name="cat_id" value="<?=$catarray[0]["cat_id"]?>"></input> <!-- default the first cat, update this value with ajax javascript -->
 							<td><input id="name" type="text" name="cat_name" value="<?=$catarray[0]["cat_name"]?>" readonly><button id="rename_button" title="Rename">R</button></td>
 							</form>
 						</tr>					
@@ -102,14 +102,13 @@
 							<!-- 
 							If the image url is updated also update the ajax file!
 							-->	
-							<td><img id="album_pic" class="album_pic" src="../<?=$catarray[0]["Img_url"]?>" alt="<?=$catarray[0]["cat_name"]?>"></td>
+							<td><img id="album_pic" class="overview_pic" src="../<?=$catarray[0]["Img_URL"]?>" alt="<?=$catarray[0]["cat_name"]?>"></td>
 						</tr>					
 						<tr>
 							<td><a id="visit_link" href="interaction.php?cat_id=<?=$catarray[0]["cat_id"]?>"><button id="visit_button">VISIT</button></a></td>
 						</tr>	
-						<tr>
-						<!-- TODO: may need to update this element's PHP. May need calculations. If change, update AJAX -->					
-							<td><div id="lastvisit"> Last Visited: <?=$catarray[0]["interaction_timer"]?></div></td>
+						<tr>				
+							<td><div id="lastvisit"> Last Visited: <?=substr($catarray[0]["interaction_timer"], 0, 10)?></div></td>
 						</tr>
 						<?php
 							} else { //new user likely! provide a link to the adoption center!
@@ -144,8 +143,8 @@
 									break;
 								}
 						?>
-							<input type="hidden" id="cat<?=$j?>" value="<?=$catarray[$j]["cat_id"]?>"></input> <!-- use for ajax putting info on left hand panel -->
-							<td><div id="cats_names"><?=$catarray[$j]["cat_name"]?></div><img id="pic<?=$j?>" class="album_pic" src="../<?=$catarray[$j]["cat_URL"]?>" alt="my_cat"></td>
+							<input type="hidden" id="cat<?=$j?>" value="<?=$catarray[$j]["cat_id"]?>"></input> <!-- used for ajax putting info on left hand panel -->
+							<td><div id="cats_names"><?=$catarray[$j]["cat_name"]?></div><img id="pic<?=$j?>" class="album_pic" src="../<?=$catarray[$j]["Img_URL"]?>" alt="<?=$catarray[$j]["cat_name"]?>"></td>
 						<?php
 							}
 						?>
@@ -157,8 +156,8 @@
 									break;
 								}
 						?>
-							<input type="hidden" id="cat<?=$j?>" value="<?=$catarray[$j]["cat_id"]?>"></input> <!-- use for ajax putting info on left hand panel -->
-							<td><div id="cats_names"><?=$catarray[$j]["cat_name"]?></div><img id="pic<?=$j?>" class="album_pic" src="../<?=$catarray[$j]["cat_URL"]?>" alt="my_cat"></td>
+							<input type="hidden" id="cat<?=$j?>" value="<?=$catarray[$j]["cat_id"]?>"></input> <!-- used for ajax putting info on left hand panel -->
+							<td><div id="cats_names"><?=$catarray[$j]["cat_name"]?></div><img id="pic<?=$j?>" class="album_pic" src="../<?=$catarray[$j]["Img_URL"]?>" alt="<?=$catarray[$j]["cat_name"]?>"></td>
 						</tr>
 						<?php
 							}
@@ -220,6 +219,7 @@
 			<p id="footer_info">CS 372 Fall 2020</p>
 		</footer>
 		<script type="text/javascript" src="../javascript/rename.js"></script>
+		<script type="text/javascript" src="../javascript/suite_album_focus_ajax.js"></script>
 	</body>
 	
 </html>
@@ -237,7 +237,7 @@ function retrieve_users_cats($userid, $page) {
 		die("Connection failed: " . $database->connect_error);
 	}
 	
-	$query = "SELECT * FROM cat_table WHERE user_id LIKE '$userid' ORDER BY cat_name DESC;";
+	$query = "SELECT * FROM cat_table WHERE user_id = '$userid' ORDER BY cat_id ASC;";
 	$cats = $database->query($query);
 	$pages = ceil($cats->num_rows / 6);
 	
@@ -245,29 +245,25 @@ function retrieve_users_cats($userid, $page) {
 	
 	$num_cats = 0;
 	for ($i = 0; $i < $pages; $i++) {
-		if ($i == $page) {
-			for ($j = 0; $j < 6; $j++) {
-				if ($cats[make_index($i, $j)]->fetch_assoc()) {
-					$catarray[$j] = $cats[make_index($i, $j)]->fetch_assoc();
-					$num_cats = 6;
-				} else {
-					$num_cats = $j; //- 1 + 1
-					break;
-				}
-				
-			}
+		for ($j = 0; $j < 6; $j++) {
+			if ($catarray[$j] = $cats->fetch_assoc()) {
+				$num_cats = 6;
+			} else {
+				$num_cats = $j; //- 1 + 1
+				break;
+			}	
+		}
+		if ($i == $page - 1) {
+			break; 
 		}
 	}
+	
 	$results["num_cats"] = $num_cats;
 	$results["pages"] = $pages;
 	for ($i = 0; $i < $num_cats; $i++) {
 		$results["catarray"][$i] = $catarray[$i];
 	}
 	return $results;
-}
-
-function make_index($page, $element) {
-    return ($page*6) + $element;
 }
 
 function rename_cat($newname, $cat_id) {
@@ -281,7 +277,7 @@ function rename_cat($newname, $cat_id) {
 		die("Connection failed: " . $database->connect_error);
 	}
 	
-	$query = "UPDATE cats_table SET cat_name = '$newname' WHERE cat_id = '$cat_id';";
+	$query = "UPDATE cat_table SET cat_name = '$newname' WHERE cat_id = '$cat_id';";
 	if(!$database->query($query)) {
 		die("Failed to upload new cat name, please try again later.");
 	}
