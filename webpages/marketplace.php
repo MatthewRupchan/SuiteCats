@@ -3,6 +3,9 @@
 <?PHP
 	session_start();
 	
+	//control variable, change this to change number of cats per page.
+	$CATS_PER_PAGE = 4;
+	
 	if (isset($_POST["logout"]) && $_POST["logout"] == "1") { //the user pressed the log out button
 		unset($_POST["logout"]);
 		session_destroy();
@@ -11,23 +14,51 @@
 		header("Location: index.php");
 	} 
 	
-	/*
 	if (isset($_POST["page"])) { //for when a page button is pressed
 		$page = $_POST["page"];
 	} else {
 		$page = 1; //default to page 1
 	}
 	
-	//get cat information for display
-	$userid = $_SESSION["user"];
-	$results = retrieve_users_cats($userid, $page);
-	$num_cats = $results["num_cats"];
-	$pages = $results["pages"];
-	$catarray;
-	for ($i = 0; $i < $num_cats; $i++) {
-		$catarray[$i] = $results["catarray"][$i];
+	//database variables
+	$dbserver = "34.121.103.176:3306";
+	$dbusername = "testuser1587";
+	$dbpassword = "woai1587";
+	$dbname = "catsdatabase";
+	
+	//will place newer cats before older cats
+	$query = "SELECT * FROM cat_table WHERE cost IS NOT NULL ORDER BY cat_id DESC;"; 
+	$database = new mysqli($dbserver, $dbusername, $dbpassword, $dbname);
+	if ($database->connect_error) {
+		die("Connection failed: " . $database->connect_error);
 	}
-	*/
+	$cats_found = $database->query($query);
+	$database->close();
+
+	$num_pages = ceil($cats_found->num_rows / $CATS_PER_PAGE);
+	
+	$cats_for_sale = [];
+	$upper_limit = ($CATS_PER_PAGE * $page) - 1;
+	$lower_limit = $CATS_PER_PAGE * ($page - 1);
+	
+	for ($i = 0; $i < $cats_found->num_rows; $i++) {
+		if ($i > $upper_limit) { //we have moved beyond where we need to, can move on
+			break;
+		} elseif ($i >= $lower_limit) {
+			//store the row we need it for this page
+			if(!($cats_for_sale[$i] = $cats_found->fetch_assoc())) {
+				//but if there are no more cats to be found we must quit
+				$CATS_PER_PAGE = $i % $CATS_PER_PAGE;
+				break;
+			}
+		} else {
+			$cats_found->fetch_assoc(); //do nothing with this row
+		}
+	}
+	
+	if ($num_pages == 0) {
+		$CATS_PER_PAGE = 0; //don't show cats if there are none.
+	}
 ?>
 
 <html>
@@ -35,7 +66,6 @@
 		<title>Suite Cats</title>
 		<link rel="stylesheet" type="text/css" href="../css/style.css">
 		<link rel="stylesheet" type="text/css" href="../css/marketplace.css">
-		<script type="text/javascript" src="../javascript/insertjavascriptfilehere.js"></script>
 	</head>
 	
 	<body>
@@ -75,100 +105,63 @@
 					<img id="top_far_back" class="image_button" src="../cat_images/placeholder.png" alt="Far Back">
 					<img id="top_back" class="image_button" src="../cat_images/placeholder.png" alt="Back">
 					
-					<div class="page_label">Page: 1/1 <!--PHP SPOT HERE--></div>
-					
+					<?php
+						if ($num_pages > 0) {
+					?>
+					<div class="page_label">Page: <?=$page?>/<?=$num_pages?></div>
+					<?php
+						} else { //no cats are on sale
+					?>
+					<div class="page_label">No cats for sale.</div>
+					<?php
+						}
+					?>
 					<img id="top_ahead" class="image_button" src="../cat_images/placeholder.png" alt="Ahead">
 					<img id="top_far_ahead" class="image_button" src="../cat_images/placeholder.png" alt="Far Ahead">
 				</div>
 				
+				<?php
+					for($i = 0; $i < $CATS_PER_PAGE; $i++) {
+				?>
 				<div id="market_table"><!--PHP needed on each image and data point have fun :)-->
 					<!-- Can we do a PHP for loop? could make 5 rows and fill them really easy!-->
 					<!--Row 1-->
-					<img class="cat_image" src="../cat_images/placeholder.png" alt="Cat">
+					<img class="cat_image" src="../<?=$cats_for_sale[$i]["Img_URL"]?>" alt="Cat">
 					<div class="row">
 						<div class="row_info">
-							<h4 class="name"><u><!--PHP-->Name</u></h4>
-							<div class="detail">Hair Length: <!--PHP-->Insert Value</div>
-							<div class="detail">Colour: <!--PHP-->Insert Value</div>
-							<div class="detail">Personality: <!--PHP-->Insert Value</div>
-							<div class="detail">Eye Colour: <!--PHP-->Insert Value</div>
-							<div class="detail">Tail Type: <!--PHP-->Insert Value</div>
-							<div class="detail">Gender: <!--PHP-->Insert Value</div>
+							<h4 class="name"><u><?=$cats_for_sale[$i]["cat_name"]?></u></h4>
+							<div class="detail">Hair Length: <?=describeHair($cats_for_sale[$i]["hair_length"])?> </div>
+							<div class="detail">Colour: <?=$cats_for_sale[$i]["body_colour"]?></div>
+							<div class="detail">Personality: <?=$cats_for_sale[$i]["personality"]?></div>
+							<div class="detail">Eye Colour: <?=$cats_for_sale[$i]["eye_colour"]?></div>
+							<div class="detail">Tail Type: <?=$cats_for_sale[$i]["tail_type"]?></div>
+							<div class="detail">Gender: <?=$cats_for_sale[$i]["gender"]?></div>
 						</div>
 						
 						<div class="purchase">
 							<button class="buy_cat">Buy</button>
-							<div class="worth">$<!--PHP-->69</div>
+							<div class="worth">$<?=$cats_for_sale[$i]["cost"]?></div>
 						</div>
 					</div>
-					
-					<!--Row 2-->
-					<img class="cat_image" src="../cat_images/placeholder.png" alt="Cat">
-					<div class="row">
-						<div class="row_info">
-							<h4 class="name"><u><!--PHP-->Name</u></h4>
-							<div class="detail">Hair Length: <!--PHP-->Insert Value</div>
-							<div class="detail">Colour: <!--PHP-->Insert Value</div>
-							<div class="detail">Personality: <!--PHP-->Insert Value</div>
-							<div class="detail">Eye Colour: <!--PHP-->Insert Value</div>
-							<div class="detail">Tail Type: <!--PHP-->Insert Value</div>
-							<div class="detail">Gender: <!--PHP-->Insert Value</div>
-						</div>
-						
-						<div class="purchase">
-							<button class="buy_cat">Buy</button>
-							<div class="worth">$<!--PHP-->69</div>
-						</div>
-					</div>
-					
-					<!--Row 3-->
-					<img class="cat_image" src="../cat_images/placeholder.png" alt="Cat">
-					<div class="row">
-						<div class="row_info">
-							<h4 class="name"><u><!--PHP-->Name</u></h4>
-							<div class="detail">Hair Length: <!--PHP-->Insert Value</div>
-							<div class="detail">Colour: <!--PHP-->Insert Value</div>
-							<div class="detail">Personality: <!--PHP-->Insert Value</div>
-							<div class="detail">Eye Colour: <!--PHP-->Insert Value</div>
-							<div class="detail">Tail Type: <!--PHP-->Insert Value</div>
-							<div class="detail">Gender: <!--PHP-->Insert Value</div>
-						</div>
-						
-						<div class="purchase">
-							<button class="buy_cat">Buy</button>
-							<div class="worth">$<!--PHP-->69</div>
-						</div>
-					</div>
-					
-					<!--Row 4-->
-					<img class="cat_image" src="../cat_images/placeholder.png" alt="Cat">
-					<div class="row">
-						<div class="row_info">
-							<h4 class="name"><u><!--PHP-->Name</u></h4>
-							<div class="detail">Hair Length: <!--PHP-->Insert Value</div>
-							<div class="detail">Colour: <!--PHP-->Insert Value</div>
-							<div class="detail">Personality: <!--PHP-->Insert Value</div>
-							<div class="detail">Eye Colour: <!--PHP-->Insert Value</div>
-							<div class="detail">Tail Type: <!--PHP-->Insert Value</div>
-							<div class="detail">Gender: <!--PHP-->Insert Value</div>
-						</div>
-						
-						<div class="purchase">
-							<button class="buy_cat">Buy</button>
-							<div class="worth">$<!--PHP-->69</div>
-						</div>
-					</div>
-				</div>
-				
+				<?php
+					}
+				?>
+
+				<?php
+					if ($num_pages > 0) {
+				?>
 				<div class="forward_backward">
 					<img id="far_back" class="image_button" src="../cat_images/placeholder.png" alt="Far Back">
 					<img id="back" class="image_button" src="../cat_images/placeholder.png" alt="Back">
 					
-					<div class="page_label">Page: 1/1 <!--PHP SPOT HERE--></div>
+					<div class="page_label">Page: <?=$page?>/<?=$num_pages?></div>
 					
 					<img id="ahead" class="image_button" src="../cat_images/placeholder.png" alt="Ahead">
 					<img id="far_ahead" class="image_button" src="../cat_images/placeholder.png" alt="Far Ahead">
 				</div>
+				<?php
+					}
+				?>
 				
 			</div>
 			
@@ -187,3 +180,15 @@
 	</body>
 	
 </html>
+<?php
+//FUNCTIONS
+function describeHair($hair_number) {
+	if($hair_number == 1) {
+		return "Short";
+	} elseif($hair_number == 2) { 
+		return "Medium";
+	} elseif($hair_number == 3) { 
+		return "Long";
+	}
+}
+?>
