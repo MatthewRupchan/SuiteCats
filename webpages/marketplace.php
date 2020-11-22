@@ -1,5 +1,35 @@
 <!DOCTYPE HTML>
 
+<?PHP
+	session_start();
+	
+	if (isset($_POST["logout"]) && $_POST["logout"] == "1") { //the user pressed the log out button
+		unset($_POST["logout"]);
+		session_destroy();
+		header("Location: index.php");
+	} elseif (!isset($_SESSION["user"])) { //user is trying to access the page not logged in
+		header("Location: index.php");
+	} 
+	
+	/*
+	if (isset($_POST["page"])) { //for when a page button is pressed
+		$page = $_POST["page"];
+	} else {
+		$page = 1; //default to page 1
+	}
+	
+	//get cat information for display
+	$userid = $_SESSION["user"];
+	$results = retrieve_users_cats($userid, $page);
+	$num_cats = $results["num_cats"];
+	$pages = $results["pages"];
+	$catarray;
+	for ($i = 0; $i < $num_cats; $i++) {
+		$catarray[$i] = $results["catarray"][$i];
+	}
+	*/
+?>
+
 <html>
 	<head>
 		<title>Suite Cats</title>
@@ -15,9 +45,12 @@
 				<a href="index.php"><h3 id="website_title">Suite Cats</h3></a>
 				<img id="mascot" src="../cat_images/placeholder.png" alt="Mascot">
 				<div id="user_info_box">
-					<div id="username" class="user_box_element">Username<!--PHP INPUT--></div>
-					<div id="money" class="user_box_element">$420<!--PHP INPUT--></div>
-					<button id="log_out" class="user_box_element">Log Out</button>
+					<div id="username" class="user_box_element"><?=$_SESSION["user_name"]?></div>
+					<div id="money" class="user_box_element">$<?=$_SESSION["money"]?></div>
+					<form action="index.php" method="post" enctype="multipart/form-data" id="logout">
+						<input type="hidden" name="logout" value="1"></input>
+						<button id="log_out" type="submit" class="user_box_element">Log Out</button>
+					</form>
 				</div>
 			</div>
 			
