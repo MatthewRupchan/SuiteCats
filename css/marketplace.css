@@ -46,10 +46,8 @@ Marketplace Section Content
 	margin-left: 10px;
 	margin-right: 10px;
 	float: left;
-}
-
-.image_button:hover{
-	cursor: pointer;
+	background-repeat: no-repeat;
+	background-size: 60px 40px;
 }
 
 .page_label{
@@ -65,6 +63,23 @@ Marketplace Section Content
 	width: 100%;
 	float: left;
 	border-bottom: solid black 2px;
+}
+
+.image_button:disabled {
+	cursor: not-allowed;
+}
+
+#far_back {
+	background-image: url(../cat_images/placeholder.png);
+}
+#back {
+	background-image: url(../cat_images/placeholder.png);
+}
+#forward {
+	background-image: url(../cat_images/placeholder.png);
+}
+#far_forward {
+	background-image: url(../cat_images/placeholder.png);
 }
 
 /*

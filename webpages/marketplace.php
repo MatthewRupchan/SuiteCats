@@ -102,10 +102,26 @@
 				<div class="heading">Marketplace</div>
 				
 				<div class="forward_backward">
-					<img id="top_far_back" class="image_button" src="../cat_images/placeholder.png" alt="Far Back">
-					<img id="top_back" class="image_button" src="../cat_images/placeholder.png" alt="Back">
+					<?php 
+						//BACK BUTTONS
+						if($page > 1) {
+							$enabled = "";
+						} else {
+							$enabled = "disabled";
+						}
+					?>
+					
+					<form action="marketplace.php" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="page" value="<?=1?>"></input>
+						<button id="far_back" class="image_button" <?=$enabled?>></button>
+					</form>
+					<form action="marketplace.php" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="page" value="<?=$page - 1?>"></input>
+						<button id="back" class="image_button" <?=$enabled?>></button>
+					</form>
 					
 					<?php
+						//PAGE LABEL
 						if ($num_pages > 0) {
 					?>
 					<div class="page_label">Page: <?=$page?>/<?=$num_pages?></div>
@@ -115,17 +131,28 @@
 					<div class="page_label">No cats for sale.</div>
 					<?php
 						}
+						//FORWARD BUTTONS
+						if($page < $num_pages) {
+							$enabled = "";
+						} else {
+							$enabled = "disabled";
+						}
 					?>
-					<img id="top_ahead" class="image_button" src="../cat_images/placeholder.png" alt="Ahead">
-					<img id="top_far_ahead" class="image_button" src="../cat_images/placeholder.png" alt="Far Ahead">
+					
+					<form action="marketplace.php" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="page" value="<?=$page + 1?>"></input>
+						<button id="forward" class="image_button" <?=$enabled?>></button>
+					</form>
+					<form action="marketplace.php" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="page" value="<?=$num_pages?>"></input>
+						<button id="far_forward" class="image_button" <?=$enabled?>></button>
+					</form>
 				</div>
 				
 				<?php
 					for($i = 0; $i < $CATS_PER_PAGE; $i++) {
 				?>
-				<div id="market_table"><!--PHP needed on each image and data point have fun :)-->
-					<!-- Can we do a PHP for loop? could make 5 rows and fill them really easy!-->
-					<!--Row 1-->
+				<div id="market_table">
 					<img class="cat_image" src="../<?=$cats_for_sale[$i]["Img_URL"]?>" alt="Cat">
 					<div class="row">
 						<div class="row_info">
@@ -151,13 +178,43 @@
 					if ($num_pages > 0) {
 				?>
 				<div class="forward_backward">
-					<img id="far_back" class="image_button" src="../cat_images/placeholder.png" alt="Far Back">
-					<img id="back" class="image_button" src="../cat_images/placeholder.png" alt="Back">
+					<?php 
+						//BACK BUTTONS
+						if($page > 1) {
+							$enabled = "";
+						} else {
+							$enabled = "disabled";
+						}
+					?>
+					
+					<form action="marketplace.php" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="page" value="<?=1?>"></input>
+						<button id="far_back" class="image_button" <?=$enabled?>></button>
+					</form>
+					<form action="marketplace.php" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="page" value="<?=$page - 1?>"></input>
+						<button id="back" class="image_button" <?=$enabled?>></button>
+					</form>
 					
 					<div class="page_label">Page: <?=$page?>/<?=$num_pages?></div>
 					
-					<img id="ahead" class="image_button" src="../cat_images/placeholder.png" alt="Ahead">
-					<img id="far_ahead" class="image_button" src="../cat_images/placeholder.png" alt="Far Ahead">
+					<?php
+						//FORWARD BUTTONS
+						if($page < $num_pages) {
+							$enabled = "";
+						} else {
+							$enabled = "disabled";
+						}
+					?>
+					
+					<form action="marketplace.php" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="page" value="<?=$page + 1?>"></input>
+						<button id="forward" class="image_button" <?=$enabled?>></button>
+					</form>
+					<form action="marketplace.php" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="page" value="<?=$num_pages?>"></input>
+						<button id="far_forward" class="image_button" <?=$enabled?>></button>
+					</form>
 				</div>
 				<?php
 					}
@@ -171,9 +228,6 @@
 		</content>
 		
 		<footer> 
-			<!-- 
-			this is a placeholder, update if we want something else here
-			-->
 			<p id="footer_info">CS 372 Fall 2020</p>
 		</footer>
 		
