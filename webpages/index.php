@@ -49,7 +49,6 @@
 		<title>Suite Cats</title>
 		<link rel="stylesheet" type="text/css" href="../css/style.css">
 		<link rel="stylesheet" type="text/css" href="../css/index.css">
-		<script type="text/javascript" src="../javascript/insertjavascriptfilehere.js"></script>
 	</head>
 	
 	<body>

@@ -29,13 +29,14 @@ table {
 	margin-left: auto;
 	margin-right: auto;
 	max-width:1000px;
-	border-collapse: collapse;
+	border-spacing: 0px;
 	text-align: center;
 }
 
 /*Main Table*/
 #big_table {
-	border: solid black 2px;
+	border: 2px solid black;
+	border-radius: 10px;
 	margin-bottom: 15px;
 }
 
@@ -89,15 +90,42 @@ table {
 	margin-bottom: 30px;
 }
 
+/*For when the user has no cats*/
+#adoption_button {
+	border: none;
+	background-color: #9f7e3c;
+	text-decoration: none;
+	font-size: 35px;
+	padding: 15px 32px;
+	text-align:center;
+	margin-bottom: 30px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+/*For when the user has no cats*/
+#get_cat_prompt {
+	font-size: 20px;
+	margin-top: 95px;
+	height: 30px;
+}
+
+/*Focused cat has bigger image and not clickable suggestion cursor*/
+.overview_pic {
+	height:170px;
+	width:170px;
+}
+
 /*
 3.Overview Album
 */
 
 /*Picture Sizes of Multiple cats*/
-#album_pic {
+.album_pic {
 	height:150px;
 	width:150px;
 	padding: 10px;
+	cursor: pointer;
 }
 
 /*Labels for Multiple Cat Names*/
@@ -111,7 +139,7 @@ table {
 }
 
 /*Page buttons*/
-#page_buttons {
+.page_buttons {
 	border: none;
 	background-color: #e3d4b5;
 	text-decoration: none;
@@ -119,4 +147,30 @@ table {
 	padding: 22px 20px;
 	text-align: center;
 	margin-right: 5px;
+}
+
+/*The maximum or minimum page has been reached*/
+button:disabled {
+	background-color: #f3ead9; /*Slightly lighter than if enabled. May want to update colouring?*/
+	cursor: not-allowed;
+}
+
+/*Keep page buttons at the bottom even when there is no cats */
+.cat_row {
+	height: 198.5px;
+}
+
+/*Avoids the page buttons stacking.*/
+.page_left {
+	float: left;
+	margin-left: 5px;
+}
+
+.page_right {
+	float: right;
+	margin-right: 5px;
+}
+
+td{
+	min-width: 172px;
 }
