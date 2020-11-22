@@ -65,3 +65,5 @@ ALTER TABLE cat_table DROP COLUMN owend;
 ALTER TABLE cat_table ADD owned TINYINT(1);
 
 ALTER TABLE cat_table ADD view_date DATETIME;
+
+ALTER TABLE cat_table ADD cost INT;
