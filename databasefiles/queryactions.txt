@@ -1,0 +1,33 @@
+$username = $_POST['username'];
+$password = $_POST['password'];
+...
+
+add more users:
+$query = "INSERT INTO user_table(user_id, user_name, user_password, email, money) 
+VALUES ('$user_id', '$user_name', '$user_password', '$email', '$money');"
+
+update values from user_table:(an example to change the money)
+$query = "UPDATE user_table SET money= $money WHERE user_id = $user_id;"
+
+validation checked:
+$query = "SELECT user_name, user_password, user_repassword, email FROM user_table 
+WHERE user_name='$username' and user_password='$password' and user_repassword='$user_repassword' and email='$email'";
+
+add more cats to cat_table:
+$query = "INSERT INTO cat_table (cat_id, eye_colour, tail_length, ...)
+VALUES ('$cat_id', '$eye_colour', '$tail_length', ...);"
+
+remove a cat from cat_table:
+$query = "DELETE FROM cat_table WHERE owned = 0;"
+
+
+sort cats by price in ascending order in marketplace table:
+$query = "SELECT * FROM Customers ORDER BY cat_price ASC;"
+
+The $variable can be vary which depends on how you named it and the stored content.
+any other actions needed please contact me on dc, thank you!
+
+
+
+
+
