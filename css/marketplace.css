@@ -65,7 +65,7 @@ Marketplace Section Content
 	border-bottom: solid black 2px;
 }
 
-.image_button:disabled {
+button:disabled {
 	cursor: not-allowed;
 }
 

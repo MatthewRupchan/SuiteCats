@@ -3,6 +3,12 @@
 <?PHP
 	session_start();
 	
+	//database variables
+	$dbserver = "34.121.103.176:3306";
+	$dbusername = "testuser1587";
+	$dbpassword = "woai1587";
+	$dbname = "catsdatabase";
+	
 	//control variable, change this to change number of cats per page.
 	$CATS_PER_PAGE = 4;
 	
@@ -14,19 +20,17 @@
 		header("Location: index.php");
 	} 
 	
+	if (isset($_POST["buy_cat"])) { //a user is purchasing a cat
+		purchaseCat();
+	}
+	
 	if (isset($_POST["page"])) { //for when a page button is pressed
 		$page = $_POST["page"];
 	} else {
 		$page = 1; //default to page 1
 	}
-	
-	//database variables
-	$dbserver = "34.121.103.176:3306";
-	$dbusername = "testuser1587";
-	$dbpassword = "woai1587";
-	$dbname = "catsdatabase";
-	
-	//will place newer cats before older cats
+
+	//Newer cats are listed before older cats
 	$query = "SELECT * FROM cat_table WHERE cost IS NOT NULL ORDER BY cat_id DESC;"; 
 	$database = new mysqli($dbserver, $dbusername, $dbpassword, $dbname);
 	if ($database->connect_error) {
@@ -40,24 +44,17 @@
 	$cats_for_sale = [];
 	$upper_limit = ($CATS_PER_PAGE * $page) - 1;
 	$lower_limit = $CATS_PER_PAGE * ($page - 1);
-	
+	$num_cats_on_page = 0;
 	for ($i = 0; $i < $cats_found->num_rows; $i++) {
 		if ($i > $upper_limit) { //we have moved beyond where we need to, can move on
 			break;
 		} elseif ($i >= $lower_limit) {
 			//store the row we need it for this page
-			if(!($cats_for_sale[$i] = $cats_found->fetch_assoc())) {
-				//but if there are no more cats to be found we must quit
-				$CATS_PER_PAGE = $i % $CATS_PER_PAGE;
-				break;
-			}
+			$cats_for_sale[$i - $lower_limit] = $cats_found->fetch_assoc();
+			$num_cats_on_page++;
 		} else {
 			$cats_found->fetch_assoc(); //do nothing with this row
 		}
-	}
-	
-	if ($num_pages == 0) {
-		$CATS_PER_PAGE = 0; //don't show cats if there are none.
 	}
 ?>
 
@@ -149,10 +146,10 @@
 					</form>
 				</div>
 				
-				<?php
-					for($i = 0; $i < $CATS_PER_PAGE; $i++) {
-				?>
 				<div id="market_table">
+				<?php
+					for($i = 0; $i < $num_cats_on_page; $i++) {
+				?>
 					<img class="cat_image" src="../<?=$cats_for_sale[$i]["Img_URL"]?>" alt="Cat">
 					<div class="row">
 						<div class="row_info">
@@ -165,15 +162,31 @@
 							<div class="detail">Gender: <?=$cats_for_sale[$i]["gender"]?></div>
 						</div>
 						
+						<?php
+						$enabled = "";
+						$button_text = "Purchase";
+						//Disable button and state "Cannot afford" if user can't afford this cat
+						if ($_SESSION["money"] <  $cats_for_sale[$i]["cost"]) {
+							$enabled = "disabled";
+							$button_text = "You can't afford this cat.";
+						} elseif ($_SESSION["user"] == $cats_for_sale[$i]["user_id"]) { //Same if the cat is yours.
+							$enabled = "disabled";
+							$button_text = "This is your cat.";
+						}
+						?>
 						<div class="purchase">
-							<button class="buy_cat">Buy</button>
+							<form action="marketplace.php" method="post" enctype="multipart/form-data">
+								<input type="hidden" name="buy_cat" value="<?=$cats_for_sale[$i]["cat_id"]?>"></input>
+								<button class="buy_cat" type="submit" <?=$enabled?>><?=$button_text?></button>
+							</form>
 							<div class="worth">$<?=$cats_for_sale[$i]["cost"]?></div>
 						</div>
 					</div>
+					
 				<?php
-					}
+					} //End of the table rows.
 				?>
-
+				</div>
 				<?php
 					if ($num_pages > 0) {
 				?>
@@ -244,5 +257,54 @@ function describeHair($hair_number) {
 	} elseif($hair_number == 3) { 
 		return "Long";
 	}
+}
+
+function purchaseCat() {
+	$dbserver = "34.121.103.176:3306";
+	$dbusername = "testuser1587";
+	$dbpassword = "woai1587";
+	$dbname = "catsdatabase";
+	
+	$database = new mysqli($dbserver, $dbusername, $dbpassword, $dbname);
+	if ($database->connect_error) {
+		die("Connection failed: " . $database->connect_error);
+	}
+	
+	//double check the money situation to prevent Schenanigans
+	$cat_id = $_POST["buy_cat"];
+	$uid = $_SESSION["user"];
+	$query = "SELECT * FROM cat_table WHERE cat_id = '$cat_id';";
+	$results = $database->query($query);
+	
+	$sold_cat = $results->fetch_assoc();
+	$price = $sold_cat["cost"];
+	if($price == null) {
+		die("Could not purchase cat.");
+	} elseif ($price > $_SESSION["money"]) {
+		die("You can't afford this cat.");
+	}
+	
+	$old_owner = $sold_cat["user_id"];
+	//Take cat off sale and make you the new owner!
+	$query = "UPDATE cat_table SET cost = NULL, user_id = '$uid' WHERE cat_id = '$cat_id';";
+	$database->query($query);
+	
+	//reduce your money
+	$your_new_money = $_SESSION["money"] - $price;
+	$_SESSION["money"] = $your_new_money;
+	$query = "UPDATE user_table SET money = '$your_new_money' WHERE user_id = '$uid';";
+	$database->query($query);
+	
+	//increase other user's money
+	$query = "SELECT money FROM user_table WHERE user_id = '$old_owner';";
+	$results = $database->query($query);
+	$money = $results->fetch_assoc();
+	$more_money = $money["money"] + $price; //payment MAKES IT EQUAL TO PRICE GDI
+	
+	$query = "UPDATE user_table SET money = '$more_money' WHERE user_id = '$old_owner';";
+	$database->query($query);
+	
+	$database->close();
+	header("Location: interaction.php?cat_id=" . $cat_id);
 }
 ?>
