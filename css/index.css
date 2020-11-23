@@ -32,19 +32,28 @@ th, td {
 
 /*3. Map Icons and Labels*/
 #icon_marketplace {
-	background-image: url("../cat_images/placeholder.png");
+	background-image: url("../cat_images/icons/Market_Place_Icon.png");
+	background-position: center;
+	background-size: cover;
+	border-style: none;
 	height:400px; 
 	width:350px;
 }
 
 #icon_suite {
-	background-image: url("../cat_images/placeholder.png");
+	background-image: url("../cat_images/icons/Suite_Icon.png");
+	background-position: center;
+	background-size: cover;
+	border-style: none;
 	height:400px; 
 	width:350px;
 }
 
 #icon_adoption {
-	background-image: url("../cat_images/placeholder.png");
+	background-image: url("../cat_images/icons/Adoption_Icon.png");
+	background-position: center;
+	background-size: cover;
+	border-style: none;
 	height:400px; 
 	width:350px;
 }

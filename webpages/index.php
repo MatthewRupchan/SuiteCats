@@ -49,13 +49,26 @@
 		<title>Suite Cats</title>
 		<link rel="stylesheet" type="text/css" href="../css/style.css">
 		<link rel="stylesheet" type="text/css" href="../css/index.css">
+		<!-- Stylized Fonts, only 2 max for header and content, and 5 max for within content-->
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Grandstander:wght@700&display=swap" rel="stylesheet">
+		<!-- Inserted css code, because it's easier to have the link to the fonts on the same page-->
+		<style type="text/css">
+			h3, .labels{
+				font-family: 'Grandstander', cursive;
+			}
+			
+			#website_header, #log_out, #log_in {
+				font-family: 'Kalam', cursive;
+			}
+		</style>
 	</head>
 	
 	<body>
 	
 			<div id="website_header"> 
 				<a href="index.php"><h3 id="website_title">Suite Cats</h3></a>
-				<img id="mascot" src="../cat_images/placeholder.png" alt="Mascot">
+				<img id="mascot" src="../cat_images/icons/Mascot.png" alt="Mascot">
 				<div id="user_info_box">
 					<?PHP
 						if (isset($_SESSION["user"])) { //user is logged in, display their information
