@@ -15,7 +15,7 @@ content{
 }
 
 aside{
-	width:10%;
+	width:12.5%;
 	min-width: 210px;
 	float: left;
 	margin-top: 200px;
@@ -144,10 +144,17 @@ Inner Table Content
 }
 
 /*
-other
+Icons
 */
 .icon{
 	width: 290px;
 	height: 360px;
-	margin-left: -11px;
+}
+
+#icon_left {
+	margin-left: -8px;
+}
+
+#icon_right {
+	margin-left: -55px;
 }
