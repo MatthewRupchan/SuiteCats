@@ -23,7 +23,7 @@ aside{
 
 #marketplace{
 	float: left;
-	width: 80%;
+	width: 75%;
 	max-width: calc(100% - 420px);
 	min-width: calc(580px); 
 	/*470 vs 580. 470 is good enough but 580 doesn't let buy text fall off button*/
@@ -41,20 +41,22 @@ Marketplace Section Content
 }
 
 .image_button{
-	width: 60px;
-	height: 40px;
+	width: 70px;
+	height: 45px;
 	margin-left: 10px;
 	margin-right: 10px;
 	float: left;
 	background-repeat: no-repeat;
-	background-size: 60px 40px;
+	background-size: 65px 45px;
+	border-radius: 1px;
+	background-position: 1px -3px;
 }
 
 .page_label{
 	text-align: center;
 	float: left;
 	min-width: 100px;
-	width: calc(100% - 320px);
+	width: calc(100% - 360px);
 	height: 40px;
 	/*TODO resize this text*/
 }
@@ -70,16 +72,16 @@ button:disabled {
 }
 
 #far_back {
-	background-image: url(../cat_images/placeholder.png);
+	background-image: url(../cat_images/icons/ArrowL2.png);
 }
 #back {
-	background-image: url(../cat_images/placeholder.png);
+	background-image: url(../cat_images/icons/ArrowL1.png);
 }
 #forward {
-	background-image: url(../cat_images/placeholder.png);
+	background-image: url(../cat_images/icons/ArrowR1.png);
 }
 #far_forward {
-	background-image: url(../cat_images/placeholder.png);
+	background-image: url(../cat_images/icons/ArrowR2.png);
 }
 
 /*
@@ -141,3 +143,11 @@ Inner Table Content
 	text-align: center;
 }
 
+/*
+other
+*/
+.icon{
+	width: 290px;
+	height: 360px;
+	margin-left: -11px;
+}

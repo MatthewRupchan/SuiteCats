@@ -92,7 +92,7 @@
 		
 		<content> 
 			<aside>
-				<img class="icon" src="../cat_images/placeholder.png" alt="Marketplace Icon">
+				<img class="icon" src="../cat_images/icons/Market_Place_Icon.png" alt="Marketplace Icon">
 			</aside>
 			
 			<div id="marketplace">
@@ -236,7 +236,7 @@
 			</div>
 			
 			<aside>
-				<img class="icon" src="../cat_images/placeholder.png" alt="Marketplace Icon">
+				<img class="icon" src="../cat_images/icons/Market_Place_Icon.png" alt="Marketplace Icon">
 			</aside>
 		</content>
 		
