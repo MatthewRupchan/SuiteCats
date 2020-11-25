@@ -49,13 +49,26 @@
 		<title>Suite Cats</title>
 		<link rel="stylesheet" type="text/css" href="../css/style.css">
 		<link rel="stylesheet" type="text/css" href="../css/index.css">
+		<!-- Stylized Fonts, only 2 max for header and content, and 5 max for within content-->
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Grandstander:wght@700&display=swap" rel="stylesheet">
+		<!-- Inserted css code, because it's easier to have the link to the fonts on the same page-->
+		<style type="text/css">
+			h3, .labels{
+				font-family: 'Grandstander', cursive;
+			}
+			
+			#website_header, #log_out, #log_in {
+				font-family: 'Kalam', cursive;
+			}
+		</style>
 	</head>
 	
 	<body>
-	
+			<div id="star_effects">
 			<div id="website_header"> 
 				<a href="index.php"><h3 id="website_title">Suite Cats</h3></a>
-				<img id="mascot" src="../cat_images/placeholder.png" alt="Mascot">
+				<img id="mascot" src="../cat_images/icons/Mascot.png" alt="Mascot">
 				<div id="user_info_box">
 					<?PHP
 						if (isset($_SESSION["user"])) { //user is logged in, display their information
@@ -86,6 +99,7 @@
 					?>
 				</div>
 			</div>
+			</div>
 	
 		<content> 
 			<!--3 big main icons to direct users to the other available pages-->
@@ -94,17 +108,17 @@
 			
 			<th><div id="lowered_div"><a href="adoption.php">
 			<button id="icon_adoption"></button>
-			<h2 class="labels">Adoption Center</h2></div></a></th>
+			<h2 class="labels">Adoption Center</h2></a></div></th>
 			
 			
 			<th><div id="raised_div"><a href="suite.php">
 			<button id="icon_suite"></button>
-			<h2 class="labels">Suite</h2></div></a></th>
+			<h2 class="labels">Suite</h2></a></div></th>
 			
 			
 			<th><div id ="lowered_div"><a href="marketplace.php">
 			<button id="icon_marketplace"></button>
-			<h2 class="labels">Marketplace</h2></div></a></th>
+			<h2 class="labels">Marketplace</h2></a></div></th>
 			
 			</tr>
 			</table>
@@ -119,7 +133,7 @@
 			<?PHP
 				} else { //user is not logged in, display a log in form
 			?>
-			<div id="road_spacer"></div>
+			<div id="road_signed_in"></div>
 			<?PHP
 				}
 			?>
@@ -132,7 +146,6 @@
 			-->
 			<p id="footer_info">CS 372 Fall 2020</p>
 		</footer>
-		
 	</body>
 	
 </html>

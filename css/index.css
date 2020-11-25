@@ -14,7 +14,11 @@ table
 {
 	margin-left: auto;
 	margin-right: auto;
-	width:100%;
+	min-width: 1500px;
+	background-image: url("../cat_images/icons/Small_Roads.png");
+	background-repeat: no-repeat;
+	background-position: center bottom;
+	background-size: 1500px 250px;
 }
 
 th, td {
@@ -31,20 +35,33 @@ th, td {
 }
 
 /*3. Map Icons and Labels*/
+button {
+	background-color: transparent;
+}
+
 #icon_marketplace {
-	background-image: url("../cat_images/placeholder.png");
+	background-image: url("../cat_images/icons/Market_Place_Icon.png");
+	background-position: center;
+	background-size: cover;
+	border-style: none;
 	height:400px; 
 	width:350px;
 }
 
 #icon_suite {
-	background-image: url("../cat_images/placeholder.png");
+	background-image: url("../cat_images/icons/Suite_Icon.png");
+	background-position: center;
+	background-size: cover;
+	border-style: none;
 	height:400px; 
 	width:350px;
 }
 
 #icon_adoption {
-	background-image: url("../cat_images/placeholder.png");
+	background-image: url("../cat_images/icons/Adoption_Icon.png");
+	background-position: center;
+	background-size: cover;
+	border-style: none;
 	height:400px; 
 	width:350px;
 }
@@ -52,26 +69,32 @@ th, td {
 .labels {
 	font-size:200%;
 	float:center;
-	color:#cf8943
+	color:#cf8943;
+	background-position: center;
 }
 
 
 /*Probably going to need CSS for the road
 Implement PHP to disable and hide button for when user is logged in.*/
 .road {
-	width:100%;
-	background-color:#3B2713;
+	min-width:1500px;
+	background-color:#3B2D2A;
+	border: 0px;
 }
 
-#road_spacer {
+#road_signed_in {
 	width: 100%;
 	float:center;
 	min-height: 82px;
+	min-width:1500px;
+	background-color:#3B2D2A;
+	border: 0px;
 }
 
 /*5. Log In Form */
 #log_in_error_message {
 	color: red;
+	margin-bottom: -10px;
 }
 
 #log_in {
