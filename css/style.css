@@ -14,9 +14,19 @@ I threw stupid amounts of comments below to mark out some things that will need 
 
 *{
 }
+body {
+	background: rgb(148,187,233);
+	background: linear-gradient(0deg, rgba(148,187,233,1) 0%, rgba(238,174,202,0.9472382703081232) 100%);
+}
+
+#star_effects {
+	background-image: url("../cat_images/icons/background_effects.gif");
+	background-size: fixed;
+	background-position: center left;
+}
 
 header{
-	width: 100%;
+	min-width: 1015px;
 	height: 200px;
 	border-bottom: solid black 2px;
 	
@@ -62,7 +72,7 @@ menu{
 
 #mascot{
 	float: left;
-	width: 250px;
+	width: 150px;
 	height: 152px;
 	margin-left: calc(35% - 150px);
 }
@@ -75,7 +85,7 @@ menu{
 }
 
 .user_box_element{
-	width: 150px;
+	min-width: 154px;
 	height: 40px;
 	font-size: 24px;
 	margin: 5px;
