@@ -1,9 +1,9 @@
 /*
 Table of contents:
 1-Main Page Sections
-2-Aside Section Content
-3-Marketplace Section Content
-4-Inner Table Content
+2-Marketplace Section Content
+3-Inner Table Content
+4-Icons (Aside Content)
 */
 
 /*
@@ -72,15 +72,19 @@ button:disabled {
 
 #far_back {
 	background-image: url(../cat_images/icons/ArrowL2.png);
+	border-style: none;
 }
 #back {
 	background-image: url(../cat_images/icons/ArrowL1.png);
+	border-style: none;
 }
 #forward {
 	background-image: url(../cat_images/icons/ArrowR1.png);
+	border-style: none;
 }
 #far_forward {
 	background-image: url(../cat_images/icons/ArrowR2.png);
+	border-style: none;
 }
 
 /*
@@ -149,7 +153,7 @@ Icons
 */
 .icon{
 	width: 300px;
-	height: 350px;
+	height: 325px;
 }
 
 #icon_left {
