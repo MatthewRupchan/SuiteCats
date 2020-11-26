@@ -4,7 +4,8 @@
 	session_start();
 	
 	//database variables
-	$dbserver = "34.121.103.176:3306";
+	//$dbserver = "34.121.103.176:3306";
+	$dbserver = "localhost";
 	$dbusername = "testuser1587";
 	$dbpassword = "woai1587";
 	$dbname = "catsdatabase";
@@ -63,6 +64,19 @@
 		<title>Suite Cats</title>
 		<link rel="stylesheet" type="text/css" href="../css/style.css">
 		<link rel="stylesheet" type="text/css" href="../css/marketplace.css">
+		<!-- Stylized Fonts, only 2 max for header and content, and 5 max for within content-->
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Grandstander:wght@700&display=swap" rel="stylesheet">
+		<!-- Inserted css code, because it's easier to have the link to the fonts on the same page-->
+		<style type="text/css">
+			h3, h4, .buy_cat, .labels, .menu_button, .heading{
+				font-family: 'Grandstander', cursive;
+			}
+			
+			#website_header, #log_out, #log_in, .purchase, .detail, .page_label{
+				font-family: 'Kalam', cursive;
+			}
+		</style>
 	</head>
 	
 	<body>
@@ -70,7 +84,7 @@
 		<header>
 			<div id="website_header"> 
 				<a href="index.php"><h3 id="website_title">Suite Cats</h3></a>
-				<img id="mascot" src="../cat_images/placeholder.png" alt="Mascot">
+				<img id="mascot" src="../cat_images/icons/Mascot.png" alt="Mascot">
 				<div id="user_info_box">
 					<div id="username" class="user_box_element"><?=$_SESSION["user_name"]?></div>
 					<div id="money" class="user_box_element">$<?=$_SESSION["money"]?></div>
@@ -164,7 +178,7 @@
 						
 						<?php
 						$enabled = "";
-						$button_text = "Purchase";
+						$button_text = "Buy";
 						//Disable button and state "Cannot afford" if user can't afford this cat
 						if ($_SESSION["money"] <  $cats_for_sale[$i]["cost"]) {
 							$enabled = "disabled";

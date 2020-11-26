@@ -10,23 +10,22 @@ Table of contents:
 Main Page Sections
 */
 content{
-	min-width: calc(210px + 580px + 210px);
+	min-width: calc(1440px);
 	margin-top: -25px;
 }
 
 aside{
 	width:12.5%;
-	min-width: 210px;
+	min-width: 300px;
 	float: left;
 	margin-top: 200px;
 }
 
 #marketplace{
 	float: left;
-	width: 75%;
-	max-width: calc(100% - 420px);
-	min-width: calc(580px); 
-	/*470 vs 580. 470 is good enough but 580 doesn't let buy text fall off button*/
+	width: 65%;
+	max-width: calc(100% - 600px);
+	min-width: 840px;
 }
 
 /*
@@ -102,10 +101,11 @@ Inner Table Content
 	border-left: 0px;
 	border-bottom: 0px;
 	height: 150px;
+	font-size: 20px;
 }
 
 .row_info{
-	width: 88%;
+	width: calc(99% - 85px);
 	margin-left: 1%;
 	height: 100%;
 	float: left;
@@ -124,17 +124,18 @@ Inner Table Content
 }
 
 .purchase{
-	width: 10%;
+	width: 75px;
 	height: 135px;
 	float: left;
 	margin-top: 15px;
-	margin-right: 1%;
+	margin-right: 5px;
 }
 
 .buy_cat{
 	width: 100%;
 	height: 75px;
 	margin-bottom: 15px;
+	font-size: 20px;
 }
 
 .worth{
@@ -147,8 +148,8 @@ Inner Table Content
 Icons
 */
 .icon{
-	width: 290px;
-	height: 360px;
+	width: 300px;
+	height: 350px;
 }
 
 #icon_left {
@@ -156,5 +157,5 @@ Icons
 }
 
 #icon_right {
-	margin-left: -45px;
+	margin-right: -8px;
 }
