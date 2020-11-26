@@ -49,17 +49,31 @@
 		<link rel="stylesheet" type="text/css" href="../css/style.css">
 		<link rel="stylesheet" type="text/css" href="../css/sign_up.css">
 		<script type="text/javascript" src="../javascript/sign_up.js"></script>
+		<!-- Stylized Fonts, only 2 max for header and content, and 5 max for within content-->
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Grandstander:wght@700&display=swap" rel="stylesheet">
+		<!-- Inserted css code, because it's easier to have the link to the fonts on the same page-->
+		<style type="text/css">
+			h3 {
+				font-family: 'Grandstander', cursive;
+			}
+			
+			#sign_up_title, .sign_up_text, #sign_up_submit, .error_message {
+				font-family: 'Kalam', cursive;
+			}
+		</style>
 	</head>
 	
 	<body>
-	
 		<header>
+			<div id="star_effects">
 			<div id="website_header"> 
 				<a href="index.php"><h3 id="website_title">Suite Cats</h3></a>
 			</div>
+			</div>
 		</header>
-	
-		<content> 
+		
+		<content>
 			<div id="sign_up_title">Sign Up</div>
 			
 			<form action="sign_up.php" method="post" enctype="multipart/form-data">
@@ -92,9 +106,8 @@
 				
 				<button id="sign_up_submit" type="submit">Create Account</button>
 			</form>
-			
 		</content>
-		
+			
 		<footer> 
 			<!-- 
 			this is a placeholder, update if we want something else here
