@@ -73,13 +73,13 @@ button {
 	background-position: center;
 }
 
-
 /*Probably going to need CSS for the road
 Implement PHP to disable and hide button for when user is logged in.*/
 .road {
 	min-width:1500px;
 	background-color:#3B2D2A;
 	border: 0px;
+	width: 100%;
 }
 
 #road_signed_in {
