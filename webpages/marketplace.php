@@ -4,8 +4,7 @@
 	session_start();
 	
 	//database variables
-	//$dbserver = "34.121.103.176:3306";
-	$dbserver = "localhost";
+	$dbserver = "34.121.103.176:3306";
 	$dbusername = "testuser1587";
 	$dbpassword = "woai1587";
 	$dbname = "catsdatabase";
