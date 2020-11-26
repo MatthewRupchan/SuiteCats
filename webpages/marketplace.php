@@ -81,6 +81,7 @@
 	<body>
 	
 		<header>
+			<div id="star_effects">
 			<div id="website_header"> 
 				<a href="index.php"><h3 id="website_title">Suite Cats</h3></a>
 				<img id="mascot" src="../cat_images/icons/Mascot.png" alt="Mascot">
@@ -92,6 +93,7 @@
 						<button id="log_out" type="submit" class="user_box_element">Log Out</button>
 					</form>
 				</div>
+			</div>
 			</div>
 			
 			<menu>
