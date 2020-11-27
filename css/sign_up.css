@@ -41,14 +41,20 @@ content{
 }
 
 #sign_up_submit{
-	font-size: 100%;
-	background: url(../cat_images/placeholder.png);
+	font-size: 35px;
+	font-weight: bold;
+	color: #FFE3E0;
+	background: url(../cat_images/icons/Submit_Button.png);
+	background-size: 300px 200px;
+	background-position: center;
+	border-style: none;
 	width: 300px;
 	height: 200px;
 	margin-left: calc(50% - 150px);
 	float: left;
 	margin-top: 15px;
 	margin-bottom: 15px;
+	padding-top: 65px;
 }
 
 /*
