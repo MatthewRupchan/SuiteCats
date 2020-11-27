@@ -1,9 +1,9 @@
 /*
 Table of contents:
 1-Main Page Sections
-2-Aside Section Content
-3-Marketplace Section Content
-4-Inner Table Content
+2-Marketplace Section Content
+3-Inner Table Content
+4-Icons (Aside Content)
 */
 
 /*
@@ -49,6 +49,8 @@ Marketplace Section Content
 	background-size: 65px 45px;
 	border-radius: 1px;
 	background-position: 1px -3px;
+	border-style: none;
+	background-color: transparent;
 }
 
 .page_label{
@@ -64,6 +66,7 @@ Marketplace Section Content
 	width: 100%;
 	float: left;
 	border-bottom: solid black 2px;
+	box-shadow: rgba(0, 0, 255, .2) 10px 10px 2px;
 }
 
 button:disabled {
@@ -92,6 +95,7 @@ Inner Table Content
 	float: left;
 	border: solid black 2px;
 	border-bottom: 0px;
+	box-shadow: rgba(0, 0, 255, .2) 10px 10px inset;
 }
 
 .row{
@@ -102,6 +106,7 @@ Inner Table Content
 	border-bottom: 0px;
 	height: 150px;
 	font-size: 20px;
+	box-shadow: rgba(0, 0, 255, .2) 0px 10px inset;
 }
 
 .row_info{
@@ -136,6 +141,7 @@ Inner Table Content
 	height: 75px;
 	margin-bottom: 15px;
 	font-size: 20px;
+	
 }
 
 .worth{
@@ -149,7 +155,8 @@ Icons
 */
 .icon{
 	width: 300px;
-	height: 350px;
+	height: 325px;
+	box-shadow:0px 7px 2px -2px rgba(0, 0, 255, .2);
 }
 
 #icon_left {
