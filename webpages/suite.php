@@ -42,11 +42,11 @@
 		<link href="https://fonts.googleapis.com/css2?family=Grandstander:wght@700&display=swap" rel="stylesheet">
 		<!-- Inserted css code, because it's easier to have the link to the fonts on the same page-->
 		<style type="text/css">
-			h3, .menu_button, .heading {
+			h3, .menu_button, .heading, #visit_button {
 				font-family: 'Grandstander', cursive;
 			}
 			
-			#website_header, #get_cat_prompt, #adoption_button, #page_label {
+			#website_header, #get_cat_prompt, #adoption_button, #page_label, #lastvisit, #cats_names, #name {
 				font-family: 'Kalam', cursive;
 			}
 		</style>
