@@ -42,11 +42,11 @@
 		<link href="https://fonts.googleapis.com/css2?family=Grandstander:wght@700&display=swap" rel="stylesheet">
 		<!-- Inserted css code, because it's easier to have the link to the fonts on the same page-->
 		<style type="text/css">
-			h3, .menu_button, .heading {
+			h3, .menu_button, .heading, #adoption_button {
 				font-family: 'Grandstander', cursive;
 			}
 			
-			#website_header, #get_cat_prompt, #adoption_button, #page_label {
+			#website_header, #get_cat_prompt, #page_label {
 				font-family: 'Kalam', cursive;
 			}
 		</style>
@@ -55,6 +55,7 @@
 	<body>
 	
 		<header>
+			<div id="star_effects">
 			<div id="website_header"> 
 				<a href="index.php"><h3 id="website_title">Suite Cats</h3></a>
 				<img id="mascot" src="../cat_images/icons/Mascot.png" alt="Mascot">
@@ -66,6 +67,7 @@
 						<button id="log_out" type="submit" class="user_box_element">Log Out</button>
 					</form>
 				</div>
+			</div>
 			</div>
 			
 			<menu>

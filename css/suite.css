@@ -38,6 +38,7 @@ table {
 	border: 2px solid black;
 	border-radius: 10px;
 	margin-bottom: 15px;
+	box-shadow: rgba(0, 0, 255, .2) 10px 10px 2px;
 }
 
 /*Rename Button, which will have some changes to an image*/
@@ -58,6 +59,7 @@ table {
 #info_col {
 	max-width: 500px;
 	border-right:solid black 2px;
+	box-shadow: rgba(0, 0, 255, .2) 5px 0px 2px;
 	display: inline-block; 
 	float: right;
 	min-height: 472px;
@@ -102,6 +104,7 @@ table {
 	margin-bottom: 30px;
 	margin-left: 5px;
 	margin-right: 5px;
+	box-shadow: rgba(0, 0, 255, .2) 3px 15px 2px;
 }
 
 /*For when the user has no cats*/
