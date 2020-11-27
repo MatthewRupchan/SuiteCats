@@ -67,18 +67,3 @@ main{
     margin-bottom: 10%;
     font-size: 20px;
 }
-
-#refresh{
-    position: relative;
-    top: 20px;
-    font-size: 20px;
-}
-
-.refresh_timer{
-    height: 20px;
-    min-width: 200px;
-    float: right;
-    margin-right: calc(25% - 150px);
-    margin-bottom: 0px;
-    margin-top: 10px;
-}
