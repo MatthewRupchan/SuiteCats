@@ -105,7 +105,7 @@
 							<input type="hidden" name="rename_submit" value="1"></input>
 							<input type="hidden" name="page" value="<?=$page?>"></input> <!-- stay on this page after renaming -->
 							<input type="hidden" id="rename_cat_id" name="cat_id" value="<?=$catarray[0]["cat_id"]?>"></input> <!-- default the first cat, update this value with ajax javascript -->
-							<td><input id="name" type="text" name="cat_name" value="<?=$catarray[0]["cat_name"]?>" readonly><button id="rename_button" title="Rename">R</button></td>
+							<td><input id="name" type="text" name="cat_name" value="<?=$catarray[0]["cat_name"]?>" readonly><button id="rename_button" title="Rename"></button></td>
 							</form>
 						</tr>					
 						<tr>
