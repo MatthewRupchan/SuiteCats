@@ -1,5 +1,44 @@
 <!DOCTYPE HTML>
 
+<?PHP
+	session_start();
+
+	//database variables
+	$dbserver = "34.121.103.176:3306";
+	$dbusername = "testuser1587";
+	$dbpassword = "woai1587";
+	$dbname = "catsdatabase";
+
+	if (isset($_POST["logout"]) && $_POST["logout"] == "1") { //the user pressed the log out button
+		unset($_POST["logout"]);
+		session_destroy();
+		header("Location: index.php");
+	} elseif (!isset($_SESSION["user"])) { //user is trying to access the page not logged in
+		header("Location: index.php");
+	} 
+	
+	if (!isset($_GET["cat_id"])) {
+		header("Location: suite.php");
+	} else {
+		$database = new mysqli($dbserver, $dbusername, $dbpassword, $dbname);
+		if ($database->connect_error) {
+			die("Connection failed: " . $database->connect_error);
+		}
+		$cat_id = $_GET["cat_id"];
+		$query = "SELECT user_id FROM cat_table WHERE cat_id = '$cat_id';"; 
+		
+		$results = $database->query($query);
+		$database->close();
+		
+		$results = $results->fetch_assoc();
+		$user_id = $results["user_id"];
+		
+		if ($user_id != $_SESSION["user"]) { //not your cat goodbye
+			header("Location: suite.php");
+		}
+	}
+?>
+
 <html>
 	<head>
 		<title>Suite Cats</title>
