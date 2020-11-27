@@ -37,6 +37,19 @@
 		<title>Suite Cats</title>
 		<link rel="stylesheet" type="text/css" href="../css/style.css">
 		<link rel="stylesheet" type="text/css" href="../css/suite.css">
+		<!-- Stylized Fonts, only 2 max for header and content, and 5 max for within content-->
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Grandstander:wght@700&display=swap" rel="stylesheet">
+		<!-- Inserted css code, because it's easier to have the link to the fonts on the same page-->
+		<style type="text/css">
+			h3, .menu_button, .heading {
+				font-family: 'Grandstander', cursive;
+			}
+			
+			#website_header, #get_cat_prompt, #adoption_button, #page_label {
+				font-family: 'Kalam', cursive;
+			}
+		</style>
 	</head>
 	
 	<body>
@@ -44,7 +57,7 @@
 		<header>
 			<div id="website_header"> 
 				<a href="index.php"><h3 id="website_title">Suite Cats</h3></a>
-				<img id="mascot" src="../cat_images/placeholder.png" alt="Mascot">
+				<img id="mascot" src="../cat_images/icons/Mascot.png" alt="Mascot">
 				<div id="user_info_box">
 					<div id="username" class="user_box_element"><?=$_SESSION["user_name"]?></div>
 					<div id="money" class="user_box_element">$<?=$_SESSION["money"]?></div>
@@ -174,13 +187,13 @@
 								<!--Big Jump-->
 								<form action="suite.php" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="page" value="<?=1?>"></input>
-									<button class="page_buttons page_left" <?=$enabled?>><<</button>
+									<button id="far_back" class="page_buttons page_left" <?=$enabled?>></button>
 								</form>
 								
 								<!--One Page Jump-->
 								<form action="suite.php" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="page" value="<?=$page - 1?>"></input>
-									<button class="page_buttons page_left" <?=$enabled?>><</button>
+									<button id="back" class="page_buttons page_left" <?=$enabled?>></button>
 								</form>
 								
 							</td>
@@ -198,13 +211,13 @@
 								<!--Big Jump-->
 								<form action="suite.php" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="page" value="<?=$pages?>"></input>
-									<button class="page_buttons page_right" <?=$enabled?>>>></button>
+									<button id="far_forward" class="page_buttons page_right" <?=$enabled?>></button>
 								</form>
 								
 								<!--One Page Jump-->
 								<form action="suite.php" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="page" value="<?=$page + 1?>"></input>
-									<button class="page_buttons page_right" <?=$enabled?>>></button>
+									<button id="forward" class="page_buttons page_right" <?=$enabled?>></button>
 								</form>
 							</td>
 						</tr>					

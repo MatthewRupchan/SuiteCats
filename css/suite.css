@@ -141,18 +141,33 @@ table {
 /*Page buttons*/
 .page_buttons {
 	border: none;
-	background-color: #e3d4b5;
 	text-decoration: none;
-	font-size: 15px;
-	padding: 22px 20px;
+	width: 75px;
+	height: 50px;
 	text-align: center;
 	margin-right: 5px;
+	border-style: none;
+	background-repeat: no-repeat;
+	background-size: 65px 45px;
+	background-color: transparent;
 }
 
 /*The maximum or minimum page has been reached*/
 button:disabled {
-	background-color: #f3ead9; /*Slightly lighter than if enabled. May want to update colouring?*/
 	cursor: not-allowed;
+}
+
+#far_back {
+	background-image: url(../cat_images/icons/ArrowL2.png);
+}
+#back {
+	background-image: url(../cat_images/icons/ArrowL1.png);
+}
+#forward {
+	background-image: url(../cat_images/icons/ArrowR1.png);
+}
+#far_forward {
+	background-image: url(../cat_images/icons/ArrowR2.png);
 }
 
 /*Keep page buttons at the bottom even when there is no cats */
