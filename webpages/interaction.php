@@ -258,7 +258,7 @@ function getReadyTime($interactionTimestamp, $cooldown_time) {
 	if (time() - strtotime($interactionTimestamp) > $cooldown_time) {
 		return "Ready!";
 	} else {
-		return  "Will be ready at: " . date("H:i d/m/Y ", strtotime($interactionTimestamp) + $cooldown_time);
+		return  "Will be ready at: " . date("g:i a  F j, Y", strtotime($interactionTimestamp) + $cooldown_time);
 	}
 }
 
