@@ -165,7 +165,7 @@
 				<?php
 					for($i = 0; $i < $num_cats_on_page; $i++) {
 				?>
-					<img class="cat_image" src="../<?=$cats_for_sale[$i]["Img_URL"]?>" alt="Cat">
+					<img class="cat_image" src="<?=$cats_for_sale[$i]["Img_URL"]?>" alt="Cat">
 					<div class="row">
 						<div class="row_info">
 							<h4 class="name"><u><?=$cats_for_sale[$i]["cat_name"]?></u></h4>

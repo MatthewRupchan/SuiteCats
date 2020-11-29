@@ -26,7 +26,7 @@
 	$results = retrieve_users_cats($userid, $page);
 	$num_cats = $results["num_cats"];
 	$pages = $results["pages"];
-	$catarray;
+	$catarray = [];
 	for ($i = 0; $i < $num_cats; $i++) {
 		$catarray[$i] = $results["catarray"][$i];
 	}
@@ -114,7 +114,7 @@
 							<!-- 
 							If the image url is updated, please also update the ajax file!
 							-->	
-							<td><img id="album_pic" class="overview_pic" src="../<?=$catarray[0]["Img_URL"]?>" alt="<?=$catarray[0]["cat_name"]?>"></td>
+							<td><img id="album_pic" class="overview_pic" src="<?=$catarray[0]["Img_URL"]?>" alt="<?=$catarray[0]["cat_name"]?>"></td>
 						</tr>					
 						<tr>
 							<td><a id="visit_link" href="interaction.php?cat_id=<?=$catarray[0]["cat_id"]?>"><button id="visit_button">VISIT</button></a></td>
@@ -157,7 +157,7 @@
 								}
 						?>
 							<input type="hidden" id="cat<?=$j?>" value="<?=$catarray[$j]["cat_id"]?>"></input> <!-- used for ajax putting info on left hand panel -->
-							<td><div id="cats_names"><?=$catarray[$j]["cat_name"]?></div><img id="pic<?=$j?>" class="album_pic" src="../<?=$catarray[$j]["Img_URL"]?>" alt="<?=$catarray[$j]["cat_name"]?>"></td>
+							<td><div id="cats_names"><?=$catarray[$j]["cat_name"]?></div><img id="pic<?=$j?>" class="album_pic" src="<?=$catarray[$j]["Img_URL"]?>" alt="<?=$catarray[$j]["cat_name"]?>"></td>
 						<?php
 							}
 						?>
@@ -170,7 +170,7 @@
 								}
 						?>
 							<input type="hidden" id="cat<?=$j?>" value="<?=$catarray[$j]["cat_id"]?>"></input> <!-- used for ajax putting info on left hand panel -->
-							<td><div id="cats_names"><?=$catarray[$j]["cat_name"]?></div><img id="pic<?=$j?>" class="album_pic" src="../<?=$catarray[$j]["Img_URL"]?>" alt="<?=$catarray[$j]["cat_name"]?>"></td>
+							<td><div id="cats_names"><?=$catarray[$j]["cat_name"]?></div><img id="pic<?=$j?>" class="album_pic" src="<?=$catarray[$j]["Img_URL"]?>" alt="<?=$catarray[$j]["cat_name"]?>"></td>
 						<?php
 							}
 						?>

@@ -22,6 +22,11 @@
         die("Connection failed: " . $database->connect_error);
     }
 
+    //user adopting a cat
+    if (isset($_POST["adopt_cat"])) {
+        adoptCat();
+    }
+
     //select 3 random unowned cats
     $query = "SELECT * FROM cat_table WHERE owned <>1 ORDER BY RAND() LIMIT 3;";
     if (!$cats_query = $database->query($query)){
@@ -125,68 +130,47 @@
                 <img class="icon" src="../cat_images/icons/Adoption_Icon.png" alt="Marketplace Icon">
             </aside>
 
+            <?php
+            $cat_cost = 50;
+            $button_status = "";
+            $button_text = "Adopt $50";
+
+            for ($i = 0; $i < 3; $i++) {
+                if ($_SESSION["money"] < $cat_cost) {
+                    $button_status = "disabled";
+                    $button_text = "You cannot afford this cat.";
+                } else if ($cats_available[$i] == 1) {
+                    $button_status = "disabled";
+                    $button_text = "Owned";
+                }
+
+            ?>
             <div class="adoption_display" id="adoption_display_left">
-                <img class="cat_image" src="<?=$cats_available[0]["Img_URL"]?>" alt="cat img">
+                <img class="cat_image" src="<?=$cats_available[$i]["Img_URL"]?>" alt="cat img">
                 <div class="cat_details">
-                    <h4 class="name"><u><?=$cats_available[0]["cat_name"]?></u></h4>
-                    <?php if($cats_available[0]["hair_length"] == 1) : ?>
+                    <h4 class="name"><u><?=$cats_available[$i]["cat_name"]?></u></h4>
+                    <?php if($cats_available[$i]["hair_length"] == 1) : ?>
                     <div class="detail">Hair length: Short</div>
-                    <?php elseif($cats_available[0]["hair_length"] == 2) : ?>
+                    <?php elseif($cats_available[$i]["hair_length"] == 2) : ?>
                     <div class="detail">Hair length: Medium</div>
                     <?php else : ?>
                     <div class="detail">Hair length: Long</div>
                     <?php endif; ?>
-                    <div class="detail">Colour: <?=$cats_available[0]["body_colour"]?></div>
-                    <div class="detail">Eye Colour: <?=$cats_available[0]["eye_colour"]?></div>
-                    <div class="detail">Tail Type: <?=$cats_available[0]["tail_type"]?></div>
-                    <div class="detail">Personality: <?=$cats_available[0]["personality"]?></div>
-                    <div class="detail">Gender: <?=$cats_available[0]["gender"]?></div>
+                    <div class="detail">Colour: <?=$cats_available[$i]["body_colour"]?></div>
+                    <div class="detail">Eye Colour: <?=$cats_available[$i]["eye_colour"]?></div>
+                    <div class="detail">Tail Type: <?=$cats_available[$i]["tail_type"]?></div>
+                    <div class="detail">Personality: <?=$cats_available[$i]["personality"]?></div>
+                    <div class="detail">Gender: <?=$cats_available[$i]["gender"]?></div>
 
-                    <button class="adopt_button">Adopt $50</button>
+                    <form action="adoption.php" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="adopt_cat" value="<?=$cats_available[$i]["cat_id"]?>">
+                        <button class="adopt_button" type="submit" onclick="confirm('Will you adopt this cat?')" <?=$button_status?>><?=$button_text?></button>
+                    </form>
                 </div>
             </div>
-
-            <div class="adoption_display" id="adoption_display_center">
-                <img class="cat_image" src="<?=$cats_available[1]["Img_URL"]?>" alt="cat img">
-                <div class="cat_details">
-                    <h4 class="name"><u><?=$cats_available[1]["cat_name"]?></u></h4>
-                    <?php if($cats_available[1]["hair_length"] == 1) : ?>
-                        <div class="detail">Hair length: Short</div>
-                    <?php elseif($cats_available[1]["hair_length"] == 2) : ?>
-                        <div class="detail">Hair length: Medium</div>
-                    <?php else : ?>
-                        <div class="detail">Hair length: Long</div>
-                    <?php endif; ?>
-                    <div class="detail">Colour: <?=$cats_available[1]["body_colour"]?></div>
-                    <div class="detail">Eye Colour: <?=$cats_available[1]["eye_colour"]?></div>
-                    <div class="detail">Tail Type: <?=$cats_available[1]["tail_type"]?></div>
-                    <div class="detail">Personality: <?=$cats_available[1]["personality"]?></div>
-                    <div class="detail">Gender: <?=$cats_available[1]["gender"]?></div>
-
-                    <button class="adopt_button">Adopt $50</button>
-                </div>
-            </div>
-
-            <div class="adoption_display" id="adoption_display_right">
-                <img class="cat_image" src="<?=$cats_available[2]["Img_URL"]?>" alt="cat img">
-                <div class="cat_details">
-                    <h4 class="name"><u><?=$cats_available[2]["cat_name"]?></u></h4>
-                    <?php if($cats_available[2]["hair_length"] == 1) : ?>
-                        <div class="detail">Hair length: Short</div>
-                    <?php elseif($cats_available[2]["hair_length"] == 2) : ?>
-                        <div class="detail">Hair length: Medium</div>
-                    <?php else : ?>
-                        <div class="detail">Hair length: Long</div>
-                    <?php endif; ?>
-                    <div class="detail">Colour: <?=$cats_available[2]["body_colour"]?></div>
-                    <div class="detail">Eye Colour: <?=$cats_available[2]["eye_colour"]?></div>
-                    <div class="detail">Tail Type: <?=$cats_available[2]["tail_type"]?></div>
-                    <div class="detail">Personality: <?=$cats_available[2]["personality"]?></div>
-                    <div class="detail">Gender: <?=$cats_available[2]["gender"]?></div>
-
-                    <button class="adopt_button">Adopt $50</button>
-                </div>
-            </div>
+            <?php
+            }
+            ?>
 
             <aside id="right_icon">
                 <img class="icon" src="../cat_images/icons/Adoption_Icon.png" alt="Marketplace Icon">
@@ -198,3 +182,40 @@
     </footer>
 </body>
 </html>
+
+<?php
+function adoptCat() {
+    $dbserver = "34.121.103.176:3306";
+    $dbusername = "testuser1587";
+    $dbpassword = "woai1587";
+    $dbname = "catsdatabase";
+
+    $database = new mysqli($dbserver, $dbusername, $dbpassword, $dbname);
+    if ($database->connect_error) {
+        die("Connection failed: " . $database->connect_error);
+    }
+
+    //query the cat to adopt
+    $cat_id = $_POST["adopt_cat"];
+    $user_id = $_SESSION["user"];
+    $query = "SELECT * FROM cat_table WHERE cat_id = '$cat_id';";
+    $results = $database->query($query);
+    if ($_SESSION["money"] < 50) {
+        die("You can't afford this cat.");
+    }
+
+    //update the cat ownership to current user
+    $cat = $results->fetch_assoc();
+    $query = "UPDATE cat_table SET user_id = '$user_id', owned = '1' WHERE cat_id = '$cat_id';";
+    $database->query($query);
+
+    //update user's money balance
+    $new_balance = $_SESSION["money"] - 50;
+    $_SESSION["money"] = $new_balance;
+    $query = "UPDATE user_table SET money = '$new_balance' WHERE user_id = '$user_id';";
+    $database->query($query);
+
+    $database->close();
+    header("Location: interaction.php");
+}
+?>
