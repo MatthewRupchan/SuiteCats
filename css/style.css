@@ -83,6 +83,7 @@ menu{
 	border: solid black 2px;
 	border-left: 0px;
 	height: 150px;
+	box-shadow: rgba(0, 0, 255, .2) 15px -2px 2px;
 }
 
 .user_box_element{

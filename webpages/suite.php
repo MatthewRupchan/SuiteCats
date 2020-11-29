@@ -37,14 +37,28 @@
 		<title>Suite Cats</title>
 		<link rel="stylesheet" type="text/css" href="../css/style.css">
 		<link rel="stylesheet" type="text/css" href="../css/suite.css">
+		<!-- Stylized Fonts, only 2 max for header and content, and 5 max for within content-->
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Grandstander:wght@700&display=swap" rel="stylesheet">
+		<!-- Inserted css code, because it's easier to have the link to the fonts on the same page-->
+		<style type="text/css">
+			h3, .menu_button, .heading, #adoption_button, #visit_button {
+				font-family: 'Grandstander', cursive;
+			}
+			
+			#website_header, #get_cat_prompt, #page_label, #lastvisit, #cats_names, #name {
+				font-family: 'Kalam', cursive;
+			}
+		</style>
 	</head>
 	
 	<body>
 	
 		<header>
+			<div id="star_effects">
 			<div id="website_header"> 
 				<a href="index.php"><h3 id="website_title">Suite Cats</h3></a>
-				<img id="mascot" src="../cat_images/placeholder.png" alt="Mascot">
+				<img id="mascot" src="../cat_images/icons/Mascot.png" alt="Mascot">
 				<div id="user_info_box">
 					<div id="username" class="user_box_element"><?=$_SESSION["user_name"]?></div>
 					<div id="money" class="user_box_element">$<?=$_SESSION["money"]?></div>
@@ -53,6 +67,7 @@
 						<button id="log_out" type="submit" class="user_box_element">Log Out</button>
 					</form>
 				</div>
+			</div>
 			</div>
 			
 			<menu>
@@ -92,7 +107,7 @@
 							<input type="hidden" name="rename_submit" value="1"></input>
 							<input type="hidden" name="page" value="<?=$page?>"></input> <!-- stay on this page after renaming -->
 							<input type="hidden" id="rename_cat_id" name="cat_id" value="<?=$catarray[0]["cat_id"]?>"></input> <!-- default the first cat, update this value with ajax javascript -->
-							<td><input id="name" type="text" name="cat_name" value="<?=$catarray[0]["cat_name"]?>" readonly><button id="rename_button" title="Rename">R</button></td>
+							<td><input id="name" type="text" name="cat_name" value="<?=$catarray[0]["cat_name"]?>" readonly><button id="rename_button" title="Rename"></button></td>
 							</form>
 						</tr>					
 						<tr>
@@ -105,7 +120,8 @@
 							<td><a id="visit_link" href="interaction.php?cat_id=<?=$catarray[0]["cat_id"]?>"><button id="visit_button">VISIT</button></a></td>
 						</tr>	
 						<tr>				
-							<td><div id="lastvisit"> Last Visited: <?=substr($catarray[0]["interaction_timer"], 0, 10)?></div></td>
+							<!-- <td><div id="lastvisit"> Last Visited: <?=substr($catarray[0]["interaction_timer"], 0, 10)?></div></td>-->	
+							<td><div id="lastvisit"> Last Visited: <?=date("g:i a  F j, Y", strtotime($catarray[0]["interaction_timer"]))?></div></td>
 						</tr>
 						<?php
 							} else { //new user likely! provide a link to the adoption center!
@@ -174,13 +190,13 @@
 								<!--Big Jump-->
 								<form action="suite.php" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="page" value="<?=1?>"></input>
-									<button class="page_buttons page_left" <?=$enabled?>><<</button>
+									<button id="far_back" class="page_buttons page_left" <?=$enabled?>></button>
 								</form>
 								
 								<!--One Page Jump-->
 								<form action="suite.php" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="page" value="<?=$page - 1?>"></input>
-									<button class="page_buttons page_left" <?=$enabled?>><</button>
+									<button id="back" class="page_buttons page_left" <?=$enabled?>></button>
 								</form>
 								
 							</td>
@@ -198,13 +214,13 @@
 								<!--Big Jump-->
 								<form action="suite.php" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="page" value="<?=$pages?>"></input>
-									<button class="page_buttons page_right" <?=$enabled?>>>></button>
+									<button id="far_forward" class="page_buttons page_right" <?=$enabled?>></button>
 								</form>
 								
 								<!--One Page Jump-->
 								<form action="suite.php" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="page" value="<?=$page + 1?>"></input>
-									<button class="page_buttons page_right" <?=$enabled?>>></button>
+									<button id="forward" class="page_buttons page_right" <?=$enabled?>></button>
 								</form>
 							</td>
 						</tr>					

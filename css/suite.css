@@ -38,17 +38,19 @@ table {
 	border: 2px solid black;
 	border-radius: 10px;
 	margin-bottom: 15px;
+	box-shadow: rgba(0, 0, 255, .2) 10px 10px 2px;
 }
 
 /*Rename Button, which will have some changes to an image*/
 #rename_button {
 	border: none;
-	background-color: #e3d4b5;
 	text-decoration: none;
 	font-size: 15px;
-	padding: 22px 20px;
+	padding: 24px 24px;
 	text-align: center;
 	margin-right: 5px;
+	background: url(../cat_images/icons/Pencil.png);
+	background-size: 46px 46px;
 }
 
 /*
@@ -57,6 +59,7 @@ table {
 #info_col {
 	max-width: 500px;
 	border-right:solid black 2px;
+	box-shadow: rgba(0, 0, 255, .2) 5px 0px 2px;
 	display: inline-block; 
 	float: right;
 	min-height: 472px;
@@ -76,7 +79,7 @@ table {
 
 /*Last Visited Information*/
 #lastvisit {
-	font-size: 25px;
+	font-size: 20px;
 }
 
 /*Visit button*/
@@ -101,6 +104,7 @@ table {
 	margin-bottom: 30px;
 	margin-left: 5px;
 	margin-right: 5px;
+	box-shadow: rgba(0, 0, 255, .2) 3px 15px 2px;
 }
 
 /*For when the user has no cats*/
@@ -141,18 +145,33 @@ table {
 /*Page buttons*/
 .page_buttons {
 	border: none;
-	background-color: #e3d4b5;
 	text-decoration: none;
-	font-size: 15px;
-	padding: 22px 20px;
+	width: 75px;
+	height: 50px;
 	text-align: center;
 	margin-right: 5px;
+	border-style: none;
+	background-repeat: no-repeat;
+	background-size: 65px 45px;
+	background-color: transparent;
 }
 
 /*The maximum or minimum page has been reached*/
 button:disabled {
-	background-color: #f3ead9; /*Slightly lighter than if enabled. May want to update colouring?*/
 	cursor: not-allowed;
+}
+
+#far_back {
+	background-image: url(../cat_images/icons/ArrowL2.png);
+}
+#back {
+	background-image: url(../cat_images/icons/ArrowL1.png);
+}
+#forward {
+	background-image: url(../cat_images/icons/ArrowR1.png);
+}
+#far_forward {
+	background-image: url(../cat_images/icons/ArrowR2.png);
 }
 
 /*Keep page buttons at the bottom even when there is no cats */

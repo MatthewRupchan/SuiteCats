@@ -39,6 +39,10 @@ button {
 	background-color: transparent;
 }
 
+#log_out, #log_in {
+	background-color: white;
+}
+
 #icon_marketplace {
 	background-image: url("../cat_images/icons/Market_Place_Icon.png");
 	background-position: center;
@@ -73,8 +77,7 @@ button {
 	background-position: center;
 }
 
-/*Probably going to need CSS for the road
-Implement PHP to disable and hide button for when user is logged in.*/
+/*4. Road/SignUp Buttons*/
 .road {
 	min-width:1500px;
 	background-color:#3B2D2A;
