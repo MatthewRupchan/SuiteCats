@@ -216,6 +216,6 @@ function adoptCat() {
     $database->query($query);
 
     $database->close();
-    header("Location: interaction.php");
+    header("Location: suite.php");
 }
 ?>
