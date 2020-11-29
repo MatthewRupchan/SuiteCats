@@ -52,7 +52,7 @@ function updateAlbum(cat_id) {
 			2		interaction_timer
 			*/
 			
-			document.getElementById("album_pic").src = "../" + results[0];
+			document.getElementById("album_pic").src = results[0];
 			document.getElementById("album_pic").alt = results[1];
 			document.getElementById("name").value = results[1];
 			document.getElementById("visit_link").href = "interaction.php?cat_id=" + cat_id;

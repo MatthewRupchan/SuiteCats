@@ -172,7 +172,7 @@
 			cat avatar and selling
 			-->
 			<div id="middle">
-				<img id="avatar" src="../<?=$cat_info["Img_URL"]?>" alt="Cat Image">
+				<img id="avatar" src="<?=$cat_info["Img_URL"]?>" alt="Cat Image">
 				<br>
 				<?php 
 					if($cat_info["cost"] == null) { //The cat is not for sale
