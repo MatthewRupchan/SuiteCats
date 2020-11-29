@@ -181,13 +181,13 @@
 						$enabled = "";
 						$button_text = "Buy";
 						//Disable button and state "Cannot afford" if user can't afford this cat
-						if ($_SESSION["money"] <  $cats_for_sale[$i]["cost"]) {
-							$enabled = "disabled";
-							$button_text = "You can't afford this cat.";
-						} elseif ($_SESSION["user"] == $cats_for_sale[$i]["user_id"]) { //Same if the cat is yours.
+						if ($_SESSION["user"] == $cats_for_sale[$i]["user_id"]) { //Same if the cat is yours.
 							$enabled = "disabled";
 							$button_text = "This is your cat.";
-						}
+						} elseif ($_SESSION["money"] <  $cats_for_sale[$i]["cost"]) {
+							$enabled = "disabled";
+							$button_text = "You can't afford this cat.";
+						} 
 						?>
 						<div class="purchase">
 							<form action="marketplace.php" method="post" enctype="multipart/form-data">
@@ -314,7 +314,7 @@ function purchaseCat() {
 	$query = "SELECT money FROM user_table WHERE user_id = '$old_owner';";
 	$results = $database->query($query);
 	$money = $results->fetch_assoc();
-	$more_money = $money["money"] + $price; //payment MAKES IT EQUAL TO PRICE GDI
+	$more_money = $money["money"] + $price;
 	
 	$query = "UPDATE user_table SET money = '$more_money' WHERE user_id = '$old_owner';";
 	$database->query($query);

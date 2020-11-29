@@ -71,6 +71,7 @@ Marketplace Section Content
 
 button:disabled {
 	cursor: not-allowed;
+	font-size: 12px; /*Because error messages are longer*/
 }
 
 #far_back {
@@ -129,7 +130,7 @@ Inner Table Content
 }
 
 .purchase{
-	width: 75px;
+	width: 80px;
 	height: 135px;
 	float: left;
 	margin-top: 15px;
@@ -138,10 +139,9 @@ Inner Table Content
 
 .buy_cat{
 	width: 100%;
-	height: 75px;
+	height: 80px;
 	margin-bottom: 15px;
 	font-size: 20px;
-	
 }
 
 .worth{

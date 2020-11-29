@@ -120,7 +120,8 @@
 							<td><a id="visit_link" href="interaction.php?cat_id=<?=$catarray[0]["cat_id"]?>"><button id="visit_button">VISIT</button></a></td>
 						</tr>	
 						<tr>				
-							<td><div id="lastvisit"> Last Visited: <?=substr($catarray[0]["interaction_timer"], 0, 10)?></div></td>
+							<!-- <td><div id="lastvisit"> Last Visited: <?=substr($catarray[0]["interaction_timer"], 0, 10)?></div></td>-->	
+							<td><div id="lastvisit"> Last Visited: <?=date("g:i a  F j, Y", strtotime($catarray[0]["interaction_timer"]))?></div></td>
 						</tr>
 						<?php
 							} else { //new user likely! provide a link to the adoption center!
