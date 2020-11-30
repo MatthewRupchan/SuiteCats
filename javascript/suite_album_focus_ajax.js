@@ -57,7 +57,7 @@ function updateAlbum(cat_id) {
 			document.getElementById("name").value = results[1];
 			document.getElementById("visit_link").href = "interaction.php?cat_id=" + cat_id;
 			document.getElementById("rename_cat_id").value = cat_id;
-			document.getElementById("lastvisit").innerHTML = " Last Visited: " + results[2].substring(0, 10);
+			document.getElementById("lastvisit").innerHTML = " Last Visited: " + results[2];
 		}
 	}
 	

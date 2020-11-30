@@ -32,7 +32,7 @@
 	$cat = $cat->fetch_assoc();
 	$message[0] = $cat["Img_URL"];
 	$message[1] = $cat["cat_name"];
-	$message[2] = $cat["interaction_timer"];
+	$message[2] = date("g:i a  F j, Y", strtotime($cat["interaction_timer"]));
 	
 	echo json_encode($message)
 
