@@ -46,7 +46,7 @@
 				font-family: 'Grandstander', cursive;
 			}
 			
-			#website_header, #get_cat_prompt, #page_label, #lastvisit, #cats_names, #name {
+			#website_header, #get_cat_prompt, #page_label, #log_out, #lastvisit, #cats_names, #name {
 				font-family: 'Kalam', cursive;
 			}
 		</style>

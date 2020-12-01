@@ -132,7 +132,7 @@
 				font-family: 'Grandstander', cursive;
 			}
 			
-			#website_header, #CatName, #left, #sell_cat, #lastvisit, #for_sale_label, #interaction {
+			#website_header, #CatName, #left, button, .countdown, #sell_cat, #stop_sell_cat #lastvisit, #for_sale_label, #interaction, #price_label, #cat_price {
 				font-family: 'Kalam', cursive;
 			}
 		</style>
