@@ -3,10 +3,6 @@
 <?PHP
 	session_start();
 	
-	if(isset($_POST["rename_submit"]) && $_POST["rename_submit"] == 1) { //the user is renaming their cat
-		rename_cat($_POST["cat_name"], $_POST["cat_id"]);
-	}
-	
 	if (isset($_POST["logout"]) && $_POST["logout"] == "1") { //the user pressed the log out button
 		unset($_POST["logout"]);
 		session_destroy();
@@ -15,8 +11,8 @@
 		header("Location: index.php");
 	} 
 	
-	if (isset($_POST["page"])) { //for when a page button is pressed
-		$page = $_POST["page"];
+	if (isset($_GET["page"])) { //for when a page button is pressed
+		$page = $_GET["page"];
 	} else {
 		$page = 1; //default to page 1
 	}
@@ -100,11 +96,7 @@
 							<th><div class="heading">Suite Overview</div></th>
 						</tr>
 						<tr>
-						<!-- 
-						Rename Button will have a pencil icon instead of the R
-						-->	
-							<form action="suite.php" method="post" enctype="multipart/form-data">
-							<input type="hidden" name="rename_submit" value="1"></input>
+							<form action="../phpscripts/rename_cat_helper.php" method="post" enctype="multipart/form-data">
 							<input type="hidden" name="page" value="<?=$page?>"></input> <!-- stay on this page after renaming -->
 							<input type="hidden" id="rename_cat_id" name="cat_id" value="<?=$catarray[0]["cat_id"]?>"></input> <!-- default the first cat, update this value with ajax javascript -->
 							<td><input id="name" type="text" name="cat_name" value="<?=$catarray[0]["cat_name"]?>" readonly><button id="rename_button" title="Rename"></button></td>
@@ -188,13 +180,13 @@
 							?>
 							<td>
 								<!--Big Jump-->
-								<form action="suite.php" method="post" enctype="multipart/form-data">
+								<form action="../phpscripts/pages_helper.php?from=<?="suite"?>" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="page" value="<?=1?>"></input>
 									<button id="far_back" class="page_buttons page_left" <?=$enabled?>></button>
 								</form>
 								
 								<!--One Page Jump-->
-								<form action="suite.php" method="post" enctype="multipart/form-data">
+								<form action="../phpscripts/pages_helper.php?from=<?="suite"?>" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="page" value="<?=$page - 1?>"></input>
 									<button id="back" class="page_buttons page_left" <?=$enabled?>></button>
 								</form>
@@ -212,13 +204,13 @@
 							?>
 							<td>
 								<!--Big Jump-->
-								<form action="suite.php" method="post" enctype="multipart/form-data">
+								<form action="../phpscripts/pages_helper.php?from=<?="suite"?>" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="page" value="<?=$pages?>"></input>
 									<button id="far_forward" class="page_buttons page_right" <?=$enabled?>></button>
 								</form>
 								
 								<!--One Page Jump-->
-								<form action="suite.php" method="post" enctype="multipart/form-data">
+								<form action="../phpscripts/pages_helper.php?from=<?="suite"?>" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="page" value="<?=$page + 1?>"></input>
 									<button id="forward" class="page_buttons page_right" <?=$enabled?>></button>
 								</form>
@@ -283,25 +275,5 @@ function retrieve_users_cats($userid, $page) {
 		$results["catarray"][$i] = $catarray[$i];
 	}
 	return $results;
-}
-
-function rename_cat($newname, $cat_id) {
-	$dbserver = "34.121.103.176:3306";
-	$dbusername = "testuser1587";
-	$dbpassword = "woai1587";
-	$dbname = "catsdatabase";
-	
-	$database = new mysqli($dbserver, $dbusername, $dbpassword, $dbname);
-	if ($database->connect_error) {
-		die("Connection failed: " . $database->connect_error);
-	}
-	
-	$query = "UPDATE cat_table SET cat_name = '$newname' WHERE cat_id = '$cat_id';";
-	if(!$database->query($query)) {
-		die("Failed to upload new cat name, please try again later.");
-	}
-	
-	$database->close();
-	return;
 }
 ?>
