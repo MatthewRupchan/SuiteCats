@@ -5,6 +5,10 @@
     display: block;
 }
 
+.adopt_button:disabled{
+    cursor: not-allowed;
+}
+
 .adoption_display{
     border: solid black 2px;
     border-radius: 15px;
