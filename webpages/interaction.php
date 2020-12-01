@@ -207,25 +207,25 @@
 				$groom_time = getReadyTime($cat_info["groom_timer"], $cooldown_time);
 			?>
 			<div id="right">
-			<form action="interaction.php?cat_id=<?=$cat_id?>" method="post" enctype="multipart/form-data">
+			<form action="../phpscripts/process_interaction_requests.php?cat_id=<?=$cat_id?>" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="feed" value=1></input>
 				<button id="feed" class="interaction" <?=disableIfUnready($feed_time)?>>FEED</button>
 			</form>
 				<div class="countdown" id="feed_count"><?=$feed_time?></div>
 				<br>
-			<form action="interaction.php?cat_id=<?=$cat_id?>" method="post" enctype="multipart/form-data">
+			<form action="../phpscripts/process_interaction_requests.php?cat_id=<?=$cat_id?>" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="play" value=1></input>
 				<button id="play" class="interaction" <?=disableIfUnready($play_time)?>>PLAY</button>
 			</form>	
 				<div class="countdown" id="play_count"><?=$play_time?></div>
 				<br>
-			<form action="interaction.php?cat_id=<?=$cat_id?>" method="post" enctype="multipart/form-data">
+			<form action="../phpscripts/process_interaction_requests.php?cat_id=<?=$cat_id?>" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="pet" value=1></input>
 				<button id="pet" class="interaction" <?=disableIfUnready($pet_time)?>>PET</button>
 			</form>
 				<div class="countdown" id="pet_count"><?=$pet_time?></div>
 				<br>
-			<form action="interaction.php?cat_id=<?=$cat_id?>" method="post" enctype="multipart/form-data">
+			<form action="../phpscripts/process_interaction_requests.php?cat_id=<?=$cat_id?>" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="groom" value=1></input>	
 				<button id="groom" class="interaction" <?=disableIfUnready($groom_time)?>>GROOM</button>
 			</form>
@@ -270,42 +270,6 @@ function disableIfUnready($interactionTime) {
 	}
 }
 
-function updateMoney($new_money) {
-	//database variables
-	$dbserver = "34.121.103.176:3306";
-	$dbusername = "testuser1587";
-	$dbpassword = "woai1587";
-	$dbname = "catsdatabase";
-	
-	$database = new mysqli($dbserver, $dbusername, $dbpassword, $dbname);
-	if ($database->connect_error) {
-		die("Connection failed: " . $database->connect_error);
-	}
-	$uid = $_SESSION["user"];
-	$query = "UPDATE user_table SET money = '$new_money' WHERE user_id = '$uid';";
-	$database->query($query);
-	$database->close();
-	
-	$_SESSION["money"] = $new_money;
-}
 
-function setTimestamp($timer_name, $cat_id) {
-	//database variables
-	$dbserver = "34.121.103.176:3306";
-	$dbusername = "testuser1587";
-	$dbpassword = "woai1587";
-	$dbname = "catsdatabase";
-	
-	$database = new mysqli($dbserver, $dbusername, $dbpassword, $dbname);
-	if ($database->connect_error) {
-		die("Connection failed: " . $database->connect_error);
-	}
-	//Update this timer
-	$query = "UPDATE cat_table SET " . $timer_name . " = NOW() WHERE cat_id = '$cat_id';";
-	$database->query($query);
-	//Update the last interacted with timestamp
-	$query = "UPDATE cat_table SET interaction_timer = NOW() WHERE cat_id = '$cat_id';";
-	$database->query($query);
-	$database->close();
-}
+
 ?>
