@@ -121,12 +121,14 @@ Inner Table Content
 	float: left;
 	width: 90%;
 	margin-left: 10%;
+	margin-bottom: 3px;
 }
 
 .detail{
 	width: 33.3%;
 	float: left;
 	height: 45px;
+	margin-bottom: -2px;
 }
 
 .purchase{

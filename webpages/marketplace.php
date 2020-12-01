@@ -68,11 +68,11 @@
 		<link href="https://fonts.googleapis.com/css2?family=Grandstander:wght@700&display=swap" rel="stylesheet">
 		<!-- Inserted css code, because it's easier to have the link to the fonts on the same page-->
 		<style type="text/css">
-			h3, h4, .buy_cat, .labels, .menu_button, .heading{
+			h3, .buy_cat, .labels, .menu_button, .heading{
 				font-family: 'Grandstander', cursive;
 			}
 			
-			#website_header, #log_out, #log_in, .purchase, .detail, .page_label{
+			#website_header, #log_out, #log_in, .name, .purchase, .detail, .page_label{
 				font-family: 'Kalam', cursive;
 			}
 		</style>
