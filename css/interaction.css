@@ -18,6 +18,7 @@ content{
 #left{
 	float: left;
 	margin-top: 15px;
+	box-shadow: rgba(0, 0, 255, .2) 10px 10px 2px;
 }
 
 #middle{
@@ -64,7 +65,10 @@ Middle (avatar and sell)
 	min-height: 500px;
 	max-width: 500px;
 	max-height: 500px;
+	background-image: url("../cat_images/icons/background_effects.gif");
+	background-position: center left;
 	border: solid black 2px;
+	box-shadow: rgba(0, 0, 255, .2) 10px 6px 2px;
 }
 
 #sell_cat {
@@ -73,12 +77,14 @@ Middle (avatar and sell)
 	width: 150px;
 	margin-bottom: 10px;
 	border-radius: 15px;
+	box-shadow: rgba(0, 0, 255, .2) 2px 6px 2px;
 }
 
 #cat_price{
 	float: right;
 	height: 40px;
 	font-size: 24px;
+	box-shadow: rgba(0, 0, 255, .2) 2px 6px 2px;
 }
 
 #price_label {
@@ -93,6 +99,7 @@ Middle (avatar and sell)
 	width: 200px;
 	margin-bottom: 10px;
 	border-radius: 15px;
+	box-shadow: rgba(0, 0, 255, .2) 2px 6px 2px;
 }
 
 #for_sale_label {
