@@ -26,7 +26,7 @@
 			die("Connection failed: " . $database->connect_error);
 		}
 		$cat_id = $_GET["cat_id"];
-		$query = "SELECT * FROM cat_table WHERE cat_id = '$cat_id';"; 
+		$query = "SELECT * FROM cat_table WHERE cat_id = '$cat_id';";
 		
 		$results = $database->query($query);
 		$database->close();
@@ -114,7 +114,7 @@
 				<?php 
 					if($cat_info["cost"] == null) { //The cat is not for sale
 				?>
-				<form id="sell" action="../phpscripts/sell_cat_helper?cat_id=<?=$cat_id?>" method="post" enctype="multipart/form-data">
+				<form id="sell" action="../phpscripts/sell_cat_helper.php?cat_id=<?=$cat_id?>" method="post" enctype="multipart/form-data">
 					<input id="sell_cat" type="submit" value="Sell"></button>
 					<input id="cat_price" name="cat_price" type="number" value="1" min="1" max="9999"></input>
 					<div id="price_label">Price:</div>
@@ -122,7 +122,7 @@
 				<?php 
 					} else { //The cat is for sale
 				?>
-				<form id="sell" action="../phpscripts/sell_cat_helper?cat_id=<?=$cat_id?>" method="post" enctype="multipart/form-data">
+				<form id="sell" action="../phpscripts/sell_cat_helper.php?cat_id=<?=$cat_id?>" method="post" enctype="multipart/form-data">
 					<div id="for_sale_label">For sale in the <a href="Marketplace.php">Marketplace</a></div>
 					<input type="hidden" name="remove_from_marketplace" value=1></input>
 					<input id="stop_sell_cat" type="submit" value="Stop Selling Cat"></button>
@@ -192,7 +192,7 @@ function describeHair($hair_number) {
 
 function getReadyTime($interactionTimestamp, $cooldown_time) {
 	//Make sure you're on Saskatchewan time for this to work.
-	if (time() - strtotime($interactionTimestamp) > $cooldown_time) {
+	if (time() - strtotime($interactionTimestamp . "CST") > $cooldown_time) {
 		return "Ready!";
 	} else {
 		return  "Will be ready at: " . date("g:i a  F j, Y", strtotime($interactionTimestamp) + $cooldown_time);
