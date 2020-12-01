@@ -101,7 +101,7 @@
 				?>
 				<form id="sell" action="../phpscripts/sell_cat_helper?cat_id=<?=$cat_id?>" method="post" enctype="multipart/form-data">
 					<input id="sell_cat" type="submit" value="Sell"></button>
-					<input id="cat_price" name="cat_price" type="number" value="1" min="1"></input>
+					<input id="cat_price" name="cat_price" type="number" value="1" min="1" max="9999"></input>
 					<div id="price_label">Price:</div>
 				</form>
 				<?php 
