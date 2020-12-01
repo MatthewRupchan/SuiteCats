@@ -1,8 +1,9 @@
 .adopt_button{
     text-align: center;
-    height: 35px;
+    height: 50px;
     margin: 3px auto;
     display: block;
+    font-size: 20px;
 }
 
 .adopt_button:disabled{
@@ -15,6 +16,7 @@
     width: 350px;
     float: left;
     margin-top: 60px;
+    box-shadow: rgba(0, 0, 255, .2) 10px 6px 2px;
 }
 
 #adoption_page{
