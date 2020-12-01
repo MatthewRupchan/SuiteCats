@@ -38,84 +38,6 @@
 			header("Location: suite.php");
 		}
 	}
-	
-	//money control variables
-	$standardGift = 5;
-	$boostedGift = 10;
-	$update_needed = false;
-	if (isset($_POST["feed"]) && $_POST["feed"] == 1) {
-		//personality traits that boost money
-		$boost1 = "Needy";
-		$boost2 = "Greedy";
-		//timer to update
-		$timer_name = "feed_timer";
-		$update_needed = true;
-	} elseif(isset($_POST["pet"]) && $_POST["pet"] == 1) {
-		//personality traits that boost money
-		$boost1 = "Dozy";
-		$boost2 = "Snuggly";
-		//timer to update
-		$timer_name = "pet_timer";
-		$update_needed = true;
-	} elseif(isset($_POST["play"]) && $_POST["play"] == 1) {
-		//personality traits that boost money
-		$boost1 = "Playful";
-		$boost2 = "Feisty";
-		//timer to update
-		$timer_name = "play_timer";
-		$update_needed = true;
-	} elseif(isset($_POST["groom"]) && $_POST["groom"] == 1) {
-		//personality traits that boost money
-		$boost1 = "Friendly";
-		$boost2 = "Easy-going";
-		//timer to update
-		$timer_name = "groom_timer";
-		$update_needed = true;
-	}
-	
-	if ($update_needed) {
-		//increase money
-		if ($cat_info["personality"] == $boost1 || $cat_info["personality"] == $boost2) {
-			$new_money = $_SESSION["money"] + $boostedGift;
-		} else {
-			$new_money = $_SESSION["money"] + $standardGift;
-		}
-		updateMoney($new_money);
-		//update timestamp
-		setTimestamp($timer_name, $cat_id);
-		//refresh timestamp variables
-		$database = new mysqli($dbserver, $dbusername, $dbpassword, $dbname);
-		if ($database->connect_error) {
-			die("Connection failed: " . $database->connect_error);
-		}
-		$cat_id = $_GET["cat_id"];
-		$query = "SELECT * FROM cat_table WHERE cat_id = '$cat_id';"; 
-		$results = $database->query($query);
-		$database->close();
-		$cat_info = $results->fetch_assoc();
-	}
-	
-	//Updating cat's for sale status if the forms are submitted
-	if(isset($_POST["cat_price"]) && $_POST["cat_price"] > 0) {
-		$database = new mysqli($dbserver, $dbusername, $dbpassword, $dbname);
-		if ($database->connect_error) {
-			die("Connection failed: " . $database->connect_error);
-		}
-		$cost = $_POST["cat_price"];
-		$query = "UPDATE cat_table SET cost = '$cost' WHERE cat_id = '$cat_id';";
-		$database->query($query);
-		$database->close();
-		$cat_info["cost"] = $cost;
-	} elseif (isset($_POST["remove_from_marketplace"]) && $_POST["remove_from_marketplace"] == 1) {
-		$database = new mysqli($dbserver, $dbusername, $dbpassword, $dbname);
-		if ($database->connect_error) {
-			die("Connection failed: " . $database->connect_error);
-		}
-		$query = "UPDATE cat_table SET cost = NULL WHERE cat_id = '$cat_id';";
-		$database->query($query);
-		$database->close();
-		$cat_info["cost"] = null;
-	}
 ?>
 
 <html>
@@ -177,7 +99,7 @@
 				<?php 
 					if($cat_info["cost"] == null) { //The cat is not for sale
 				?>
-				<form id="sell" action="interaction.php?cat_id=<?=$cat_id?>" method="post" enctype="multipart/form-data">
+				<form id="sell" action="../phpscripts/sell_cat_helper?cat_id=<?=$cat_id?>" method="post" enctype="multipart/form-data">
 					<input id="sell_cat" type="submit" value="Sell"></button>
 					<input id="cat_price" name="cat_price" type="number" value="1" min="1"></input>
 					<div id="price_label">Price:</div>
@@ -185,7 +107,7 @@
 				<?php 
 					} else { //The cat is for sale
 				?>
-				<form id="sell" action="interaction.php?cat_id=<?=$cat_id?>" method="post" enctype="multipart/form-data">
+				<form id="sell" action="../phpscripts/sell_cat_helper?cat_id=<?=$cat_id?>" method="post" enctype="multipart/form-data">
 					<div id="for_sale_label">For sale in the <a href="Marketplace.php">Marketplace</a></div>
 					<input type="hidden" name="remove_from_marketplace" value=1></input>
 					<input id="stop_sell_cat" type="submit" value="Stop Selling Cat"></button>
@@ -269,7 +191,5 @@ function disableIfUnready($interactionTime) {
 		return "disabled";
 	}
 }
-
-
 
 ?>
