@@ -180,13 +180,13 @@
 							?>
 							<td>
 								<!--Big Jump-->
-								<form action="suite.php" method="post" enctype="multipart/form-data">
+								<form action="../phpscripts/pages_helper.php?from=<?="suite"?>" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="page" value="<?=1?>"></input>
 									<button id="far_back" class="page_buttons page_left" <?=$enabled?>></button>
 								</form>
 								
 								<!--One Page Jump-->
-								<form action="suite.php" method="post" enctype="multipart/form-data">
+								<form action="../phpscripts/pages_helper.php?from=<?="suite"?>" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="page" value="<?=$page - 1?>"></input>
 									<button id="back" class="page_buttons page_left" <?=$enabled?>></button>
 								</form>
@@ -204,13 +204,13 @@
 							?>
 							<td>
 								<!--Big Jump-->
-								<form action="suite.php" method="post" enctype="multipart/form-data">
+								<form action="../phpscripts/pages_helper.php?from=<?="suite"?>" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="page" value="<?=$pages?>"></input>
 									<button id="far_forward" class="page_buttons page_right" <?=$enabled?>></button>
 								</form>
 								
 								<!--One Page Jump-->
-								<form action="suite.php" method="post" enctype="multipart/form-data">
+								<form action="../phpscripts/pages_helper.php?from=<?="suite"?>" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="page" value="<?=$page + 1?>"></input>
 									<button id="forward" class="page_buttons page_right" <?=$enabled?>></button>
 								</form>

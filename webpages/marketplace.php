@@ -24,8 +24,8 @@
 		purchaseCat();
 	}
 	
-	if (isset($_POST["page"])) { //for when a page button is pressed
-		$page = $_POST["page"];
+	if (isset($_GET["page"])) { //for when a page button is pressed
+		$page = $_GET["page"];
 	} else {
 		$page = 1; //default to page 1
 	}
@@ -123,11 +123,11 @@
 						}
 					?>
 					
-					<form action="marketplace.php" method="post" enctype="multipart/form-data">
+					<form action="../phpscripts/pages_helper.php?from=<?="marketplace"?>" method="post" enctype="multipart/form-data">
 						<input type="hidden" name="page" value="<?=1?>"></input>
 						<button id="far_back" class="image_button" <?=$enabled?>></button>
 					</form>
-					<form action="marketplace.php" method="post" enctype="multipart/form-data">
+					<form action="../phpscripts/pages_helper.php?from=<?="marketplace"?>" method="post" enctype="multipart/form-data">
 						<input type="hidden" name="page" value="<?=$page - 1?>"></input>
 						<button id="back" class="image_button" <?=$enabled?>></button>
 					</form>
@@ -151,11 +151,11 @@
 						}
 					?>
 					
-					<form action="marketplace.php" method="post" enctype="multipart/form-data">
+					<form action="../phpscripts/pages_helper.php?from=<?="marketplace"?>" method="post" enctype="multipart/form-data">
 						<input type="hidden" name="page" value="<?=$page + 1?>"></input>
 						<button id="forward" class="image_button" <?=$enabled?>></button>
 					</form>
-					<form action="marketplace.php" method="post" enctype="multipart/form-data">
+					<form action="../phpscripts/pages_helper.php?from=<?="marketplace"?>" method="post" enctype="multipart/form-data">
 						<input type="hidden" name="page" value="<?=$num_pages?>"></input>
 						<button id="far_forward" class="image_button" <?=$enabled?>></button>
 					</form>
@@ -215,11 +215,11 @@
 						}
 					?>
 					
-					<form action="marketplace.php" method="post" enctype="multipart/form-data">
+					<form action="../phpscripts/pages_helper.php?from=<?="marketplace"?>" method="post" enctype="multipart/form-data">
 						<input type="hidden" name="page" value="<?=1?>"></input>
 						<button id="far_back" class="image_button" <?=$enabled?>></button>
 					</form>
-					<form action="marketplace.php" method="post" enctype="multipart/form-data">
+					<form action="../phpscripts/pages_helper.php?from=<?="marketplace"?>" method="post" enctype="multipart/form-data">
 						<input type="hidden" name="page" value="<?=$page - 1?>"></input>
 						<button id="back" class="image_button" <?=$enabled?>></button>
 					</form>
@@ -235,11 +235,11 @@
 						}
 					?>
 					
-					<form action="marketplace.php" method="post" enctype="multipart/form-data">
+					<form action="../phpscripts/pages_helper.php?from=<?="marketplace"?>" method="post" enctype="multipart/form-data">
 						<input type="hidden" name="page" value="<?=$page + 1?>"></input>
 						<button id="forward" class="image_button" <?=$enabled?>></button>
 					</form>
-					<form action="marketplace.php" method="post" enctype="multipart/form-data">
+					<form action="../phpscripts/pages_helper.php?from=<?="marketplace"?>" method="post" enctype="multipart/form-data">
 						<input type="hidden" name="page" value="<?=$num_pages?>"></input>
 						<button id="far_forward" class="image_button" <?=$enabled?>></button>
 					</form>
