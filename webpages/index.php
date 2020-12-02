@@ -126,10 +126,9 @@
 			<?PHP
 				if (!isset($_SESSION["user"])) { //user is not logged in, they may sign up	
 			?>
-			<a href="sign_up.php">
-
-			<button class="road">
-			<h2 class="labels">Sign Up</h2></a></button>
+			
+                        <button class="road" onclick= "window.location.href='sign_up.php'"></button>
+			
 			<?PHP
 				} else { //user is not logged in, display a log in form
 			?>
