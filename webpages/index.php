@@ -128,7 +128,8 @@
 			?>
 			
                         <button class="road" onclick= "window.location.href='sign_up.php'"></button>
-			
+			<h2 class="labels">Sign Up</h2></a></button>
+
 			<?PHP
 				} else { //user is not logged in, display a log in form
 			?>
