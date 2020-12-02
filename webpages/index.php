@@ -127,7 +127,7 @@
 				if (!isset($_SESSION["user"])) { //user is not logged in, they may sign up	
 			?>
 			
-                        <button class="road" onclick= "window.location.href='sign_up.php'"></button>
+            <button class="road" onclick= "window.location.href='sign_up.php'">
 			<h2 class="labels">Sign Up</h2></a></button>
 
 			<?PHP
