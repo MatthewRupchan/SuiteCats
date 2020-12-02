@@ -215,12 +215,15 @@ function adoptCat() {
     $user_id = $_SESSION["user"];
     $query = "SELECT * FROM cat_table WHERE cat_id = '$cat_id';";
     $results = $database->query($query);
+    $cat = $results->fetch_assoc();
     if ($_SESSION["money"] < 50) {
         die("You can't afford this cat.");
     }
+    if ($cat[0]["owned"] == 1) {
+        die("This cat was already adopted.");
+    }
 
     //update the cat ownership to current user
-    $cat = $results->fetch_assoc();
     $query = "UPDATE cat_table SET user_id = '$user_id', owned = '1' WHERE cat_id = '$cat_id';";
     $database->query($query);
 
